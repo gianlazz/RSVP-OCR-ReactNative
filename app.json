@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "react-native-ocr-speed-read",
+    "name": "OCR Speed Read",
     "description": "No description",
     "slug": "react-native-ocr-speed-read",
     "privacy": "public",
@@ -22,6 +22,12 @@
     },
     "ios": {
       "supportsTablet": true
+    },
+    "ios": {
+      "bundleIdentifier": "com.lazztech.ocrspeedread"
+    },
+    "android": {
+      "package": "com.lazztech.ocrspeedread"
     }
   }
 }
