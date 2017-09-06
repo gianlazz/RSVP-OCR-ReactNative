@@ -18,6 +18,7 @@
 		B5DB04811F3A684600E91581 /* shell-app.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B5DB047F1F3A684600E91581 /* shell-app.bundle */; };
 		EBB8117C1BFA0514F79CAF74 /* libPods-ocr-speed-read.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A88D15726AD99E8A257BC7 /* libPods-ocr-speed-read.a */; };
 		916E17D441AE4FDDB22B04E0 /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6A19F356ACF4D1F9DDA53FA /* libRCTCamera.a */; };
+		702450009FE14970A9AE8B64 /* libRNTesseractOcr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 587560E6E5F14EBF89133ECF /* libRNTesseractOcr.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,8 @@
 		C4A88D15726AD99E8A257BC7 /* libPods-ocr-speed-read.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ocr-speed-read.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EEB07B807234D51842454BB /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; name = "RCTCamera.xcodeproj"; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		F6A19F356ACF4D1F9DDA53FA /* libRCTCamera.a */ = {isa = PBXFileReference; name = "libRCTCamera.a"; path = "libRCTCamera.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		761AA7E692864015AAC00896 /* RNTesseractOcr.xcodeproj */ = {isa = PBXFileReference; name = "RNTesseractOcr.xcodeproj"; path = "../node_modules/react-native-tesseract-ocr/ios/RNTesseractOcr.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		587560E6E5F14EBF89133ECF /* libRNTesseractOcr.a */ = {isa = PBXFileReference; name = "libRNTesseractOcr.a"; path = "libRNTesseractOcr.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +51,7 @@
 			files = (
 				EBB8117C1BFA0514F79CAF74 /* libPods-ocr-speed-read.a in Frameworks */,
 				916E17D441AE4FDDB22B04E0 /* libRCTCamera.a in Frameworks */,
+				702450009FE14970A9AE8B64 /* libRNTesseractOcr.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +125,7 @@
 			isa = "PBXGroup";
 			children = (
 				1EEB07B807234D51842454BB /* RCTCamera.xcodeproj */,
+				761AA7E692864015AAC00896 /* RNTesseractOcr.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -380,6 +385,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -396,6 +402,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};

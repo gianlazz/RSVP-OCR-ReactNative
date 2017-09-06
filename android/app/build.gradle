@@ -49,6 +49,7 @@ repositories{
 }
 
 dependencies {
+    compile project(':react-native-tesseract-ocr')
     compile project(':react-native-camera')
   compile fileTree(dir: 'libs', include: ['*.jar'])
   testCompile 'junit:junit:4.12'

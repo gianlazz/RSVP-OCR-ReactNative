@@ -9,6 +9,7 @@ import java.util.List;
 
 // Needed for `react-native link`
 // import com.facebook.react.ReactApplication;
+import com.reactlibrary.RNTesseractOcrPackage;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
 
 public class MainApplication extends MultiDexApplication {
@@ -21,6 +22,7 @@ public class MainApplication extends MultiDexApplication {
 
         // Needed for `react-native link`
         // new MainReactPackage(),
+            new RNTesseractOcrPackage(),
             new RCTCameraPackage()
     );
   }
