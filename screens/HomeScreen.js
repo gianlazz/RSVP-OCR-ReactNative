@@ -8,12 +8,17 @@ import {
   TouchableOpacity,
   View,
   Dimensions,
+  Alert,
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
 
 import Camera from 'react-native-camera';
+import RNTesseractOcr from 'react-native-tesseract-ocr';
+
+var imagePath;
+var tesseractResult;
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -21,10 +26,34 @@ export default class HomeScreen extends React.Component {
   };
 
   takePicture() {
- this.camera.capture()
-   .then((data) => console.log(data))
+  this.camera.capture()
+   .then((path) => imagePath = String(path.path))
    .catch(err => console.error(err));
-}
+
+   imagePath = imagePath.replace("file:///" , "/");
+
+   console.log('This is the path: ' + imagePath);
+
+   Alert.alert(
+    'Alert Title',
+    'This is the path: ' + imagePath)
+
+   RNTesseractOcr.startOcr(imagePath, "LANG_ENGLISH")
+     .then((result) => {
+       this.setState({ ocrResult: result });
+       console.log("OCR Result: ", result);
+       tesseractResult = String(result);
+       Alert.alert(
+         'Alert Title',
+         result
+       )
+     })
+     .catch((err) => {
+       console.log("OCR Error: ", err);
+     })
+     .done();
+
+  }
 
   render() {
     return (
