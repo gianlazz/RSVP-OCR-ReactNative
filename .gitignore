@@ -1,2 +1,8 @@
 node_modules/**/*
 .expo/**/*
+
+android/app/\.DS_Store
+
+android/app/src/\.DS_Store
+
+android/app/src/main/\.DS_Store
