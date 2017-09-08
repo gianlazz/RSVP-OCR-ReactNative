@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   navigationFilename: {
-    marginTop: 5,
+    marginTop: 0,
   },
   helpContainer: {
     marginTop: 15,
