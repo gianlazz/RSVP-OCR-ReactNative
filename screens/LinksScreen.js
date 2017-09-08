@@ -7,6 +7,8 @@ import {
   Slider, } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 
+import { MonoText } from '../components/StyledText';
+
 export default class LinksScreen extends React.Component {
   static navigationOptions = {
     header: null,
@@ -17,12 +19,12 @@ export default class LinksScreen extends React.Component {
         <View style={styles.container}>
 
           <View flex={1}>
-            <Text style={styles.pauseText}>Tap on the words to play</Text>
+            <MonoText style={styles.pauseText}>Tap on the words to play</MonoText>
           </View>
 
           <View
             flex={1}>
-            <Text style={styles.rsvp}>RSVPSTRING</Text>
+            <MonoText style={styles.rsvp}>RSVPSTRING</MonoText>
           </View>
 
           <View flex={1}>
@@ -36,7 +38,7 @@ export default class LinksScreen extends React.Component {
             style={styles.wpmContainer}
             flex={1}>
             <View>
-              <Text style={styles.wpm}>WPM 300</Text>
+              <MonoText style={styles.wpm}>WPM 300</MonoText>
             </View>
           </View>
 
