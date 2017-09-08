@@ -69,7 +69,7 @@ export default class HomeScreen extends React.Component {
        </Camera>
 
           <View
-            style={[styles.codeHighlightContainer, styles.navigationFilename]}>
+            style={[styles.navigationFilename]}>
           </View>
 
       </View>
