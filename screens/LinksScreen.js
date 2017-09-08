@@ -14,29 +14,33 @@ export default class LinksScreen extends React.Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
+        <View style={styles.container}>
 
-        <View>
-
-          <View>
+          <View flex={1}>
             <Text style={styles.pauseText}>Tap on the words to play</Text>
           </View>
 
-          <View>
+          <View
+            flex={1}>
             <Text style={styles.rsvp}>RSVPSTRING</Text>
           </View>
 
-          <Slider></Slider>
+          <View flex={1}>
+            <Slider
+              thumbTintColor={'#4A90E2'}
+              minimumTrackTintColor={'#4A90E2'}
+              maximumTrackTintColor={'#4A90E2'}></Slider>
+          </View>
 
-          <View style={styles.footer}>
+          <View
+            style={styles.wpmContainer}
+            flex={1}>
             <View>
               <Text style={styles.wpm}>WPM 300</Text>
             </View>
           </View>
 
         </View>
-
-      </ScrollView>
     );
   }
 }
@@ -46,6 +50,8 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 15,
     backgroundColor: '#fff',
+    flexDirection: 'column',
+    height: 100,
   },
 /*
   container: {
@@ -55,21 +61,21 @@ const styles = StyleSheet.create({
   },
 */
   pauseText: {
-    //flex: 1;
+    //flex: 1,
     textAlign: 'center',
-    //color: #9B9B9B;
-    //text-decoration: underline;
-    //font-size: 3vw;
+    color: '#9B9B9B',
+    textDecorationLine: 'underline',
+    //fontSize: 6,
     //font-family: Futura_Medium;
   },
 
   rsvp: {
-      //flex: 2;
+      //flex: 2,
       //flex-grow: 1;
     textAlign: 'center',
-      //color: #4A90E2;
+    color: '#4A90E2',
       //font-family: Futura_Medium;
-      //font-size: 12vw;
+    fontSize: 30,
 
   },
 
@@ -78,19 +84,23 @@ const styles = StyleSheet.create({
     //flex-grow: 1;
   },
 
+  wpmContainer: {
+    //flex: 4,
+    bottom: 0,
+    borderStyle: 'solid',
+    borderWidth: 2,
+    borderColor: '#9B9B9B',
+    marginTop: 20,
+    marginLeft: 130,
+    marginRight: 130,
+    marginBottom: 20,
+  },
+
   wpm: {
-    //flex: 4;
-    //bottom: 0px;
-    //font-weight: bold;
+    fontWeight: 'bold',
     //font-size: 3vw;
     textAlign: 'center',
-    //color: #9B9B9B;
-    //border-style: solid;
-    //border-width: 2px;
-    //margin-top: 20px;
-    //margin-left: 130px;
-    //margin-right: 130px;
-    //margin-bottom: 20px;
+    color: '#9B9B9B',
     //font-family: Futura_Medium;
   },
 
