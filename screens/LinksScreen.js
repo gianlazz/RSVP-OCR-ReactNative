@@ -18,29 +18,25 @@ export default class LinksScreen extends React.Component {
     return (
         <View style={styles.container}>
 
-          <View flex={1}>
-            <MonoText style={styles.pauseText}>Tap on the words to play</MonoText>
-          </View>
+            <View style={[styles.boxContainer, styles.boxOne]}>
+              <MonoText style={styles.pauseText}>Tap on the words to play</MonoText>
+            </View>
 
-          <View
-            flex={1}>
-            <MonoText style={styles.rsvp}>RSVPSTRING</MonoText>
-          </View>
+            <View style={[styles.boxContainer, styles.boxTwo]}>
+              <MonoText style={styles.rsvp}>RSVPSTRING</MonoText>
+            </View>
 
-          <View flex={1}>
-            <Slider
-              thumbTintColor={'#4A90E2'}
-              minimumTrackTintColor={'#4A90E2'}
-              maximumTrackTintColor={'#4A90E2'}></Slider>
-          </View>
+            <View style={styles.boxTwo}>
+              <Slider
+                thumbTintColor={'#4A90E2'}
+                minimumTrackTintColor={'#4A90E2'}
+                maximumTrackTintColor={'#4A90E2'}>
+              </Slider>
+            </View>
 
-          <View
-            style={styles.wpmContainer}
-            flex={1}>
-            <View>
+            <View style={[styles.wpmContainer, styles.boxContainer, styles.boxThree]}>
               <MonoText style={styles.wpm}>WPM 300</MonoText>
             </View>
-          </View>
 
         </View>
     );
@@ -50,21 +46,32 @@ export default class LinksScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
     paddingTop: 15,
     backgroundColor: '#fff',
-    flexDirection: 'column',
-    height: 100,
   },
-/*
-  container: {
-    display: flex;
-  flex-flow: column;
-  height: 100%;
+
+  boxContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-*/
+
+  boxOne: {
+    //backgroundColor: '#FFEEE4',
+  },
+
+  boxTwo: {
+    //backgroundColor: '#F17F42'
+  },
+
+  boxThree: {
+    backgroundColor: '#CE6D39',
+  },
+
   pauseText: {
     //flex: 1,
-    textAlign: 'center',
+    //textAlign: 'center',
     color: '#9B9B9B',
     textDecorationLine: 'underline',
     //fontSize: 6,
