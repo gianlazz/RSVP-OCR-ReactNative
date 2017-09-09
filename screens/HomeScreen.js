@@ -65,7 +65,8 @@ export default class HomeScreen extends React.Component {
            }}
            style={styles.preview}
            aspect={Camera.constants.Aspect.fill}>
-           <MonoText style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</MonoText>
+           <MonoText style={styles.capture} onPress={this.takePicture.bind(this)}>[Tesseract]</MonoText>
+           <MonoText style={styles.capture} onPress={this.takePicture.bind(this)}>[Cloud Vision]</MonoText>
        </Camera>
 
           <View
