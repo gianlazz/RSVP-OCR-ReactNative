@@ -11,21 +11,108 @@ import {
   Alert,
 } from 'react-native';
 import { WebBrowser } from 'expo';
-
 import { MonoText } from '../components/StyledText';
-
 import Camera from 'react-native-camera';
 import RNTesseractOcr from 'react-native-tesseract-ocr';
+import axios from 'axios';
 
+//DEFINING GLOBAL VARIABLES
+
+// API KEYS
+const cloudVisionKey = 'AIzaSyADh2eyiZCxc4g1IMjc0PjQFudxKlFW3-s';
+// Endpoints
+const cloudVision = 'https://vision.googleapis.com/v1/images:annotate?key=' + cloudVisionKey;
+//Used for native OCR
 var imagePath;
 var tesseractResult;
 
 export default class HomeScreen extends React.Component {
+//This is my code for turning off react navigation header. It's part of the expo
+//boilerplate
   static navigationOptions = {
     header: null,
   };
 
-  takePicture() {
+//Idk what the constructor does but this seems to be where
+//he defined the parameters for changing the state of the
+//view
+//Do I need any of this either?
+/*
+  constructor(props) {
+     super(props);
+     this.state = {
+       captureText: null,
+       showLoader: false,
+       sourceLanguage: 'en',
+       targetLanguage: null
+     };
+     this.setTextContent = this.setTextContent.bind(this);
+     this.toggleLoader = this.toggleLoader.bind(this);
+     // this.speakText = this.speakText.bind(this);
+     this.changeLanguage = this.changeLanguage.bind(this);
+   }
+*/
+
+//This is his takePicture() method
+  takeGCVPicture() {
+    //const self = this;
+    //this.toggleLoader();
+    this.camera.capture()
+      .then((image64) => {
+        console.log(image64.data);
+//This right here seems to be the only part doing the cloud vision api calls
+        axios.post(cloudVision, {
+
+          requests: [
+            {
+              image: {
+                content: image64.data
+              },
+              features: [{
+                type: 'TEXT_DETECTION',
+                maxResults: 1
+              }]
+            }
+          ]
+/*
+
+          "requests": [
+            {
+              "image": {
+                "content": image64.data
+              },
+              "features": [
+                {
+                  "type": "DOCUMENT_TEXT_DETECTION"
+                }
+              ]
+            }
+          ]
+*/
+        })
+//Here he's setting a const variable to hold the different json object results
+//from the cloud vision api.
+        .then(function (response) {
+//Here I'm going to need to change what it does with the response.
+//I'll probably just pop up an alert with the response for now. Or also console.log
+        console.log(response);
+/*
+          const textAnnotations = response.data.responses[0].textAnnotations[0];
+          const textContent = textAnnotations.description;
+          const detectedLanguage = textAnnotations.locale;
+          self.setTextContent(textContent,detectedLanguage);
+*/
+        })
+        .catch(function (error) {
+          console.log(error, 'error');
+        });
+      }).catch(err => console.error(err));
+  }
+
+// This is my takePicture() method!
+//I should probably refactor my code and add some more
+//functions to clean it up.
+  takeTesseractPicture() {
   this.camera.capture()
    .then((path) => imagePath = String(path.path))
    .catch(err => console.error(err));
@@ -63,10 +150,11 @@ export default class HomeScreen extends React.Component {
            ref={(cam) => {
              this.camera = cam;
            }}
+           captureTarget={Camera.constants.CaptureTarget.memory}
            style={styles.preview}
            aspect={Camera.constants.Aspect.fill}>
-           <MonoText style={styles.capture} onPress={this.takePicture.bind(this)}>[Tesseract]</MonoText>
-           <MonoText style={styles.capture} onPress={this.takePicture.bind(this)}>[Cloud Vision]</MonoText>
+           <MonoText style={styles.capture} onPress={this.takeTesseractPicture.bind(this)}>[Tesseract]</MonoText>
+           <MonoText style={styles.capture} onPress={this.takeGCVPicture.bind(this)}>[Cloud Vision]</MonoText>
        </Camera>
 
           <View
@@ -76,43 +164,7 @@ export default class HomeScreen extends React.Component {
       </View>
     );
   }
-
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use
-          useful development tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
-  }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/development-mode'
-    );
-  };
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
-  };
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
