@@ -96,12 +96,21 @@ export default class HomeScreen extends React.Component {
 //Here I'm going to need to change what it does with the response.
 //I'll probably just pop up an alert with the response for now. Or also console.log
         console.log(response);
-/*
+
+        //var json = JSON.parse(response);
+
+        //console.log('json parse results: ' + json.data.responses.textAnnotations.description);
+
           const textAnnotations = response.data.responses[0].textAnnotations[0];
           const textContent = textAnnotations.description;
-          const detectedLanguage = textAnnotations.locale;
-          self.setTextContent(textContent,detectedLanguage);
-*/
+
+          Alert.alert(
+           'Google Cloud Vision',
+           'Text Results: ' + textContent);
+
+          //const detectedLanguage = textAnnotations.locale;
+          //self.setTextContent(textContent,detectedLanguage);
+
         })
         .catch(function (error) {
           console.log(error, 'error');
