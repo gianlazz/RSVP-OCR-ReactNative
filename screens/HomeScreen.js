@@ -31,7 +31,7 @@ export default class HomeScreen extends React.Component {
     header: null,
   };
 
-  takeGCVPicture() {
+  textDetextion() {
     this.camera.capture()
       .then((image64) => {
         console.log(image64.data);
@@ -71,23 +71,44 @@ export default class HomeScreen extends React.Component {
       }).catch(err => console.error(err));
   }
 
-// This is my takePicture() method!
-//I should probably refactor my code and add some more
-//functions to clean it up.
-  takeTesseractPicture() {
-  this.camera.capture()
-   .then((path) => imagePath = String(path.path))
-   .catch(err => console.error(err));
+  documentDetection() {
+    this.camera.capture()
+      .then((image64) => {
+        console.log(image64.data);
+//This right here is the part doing the cloud vision api calls
+        axios.post(cloudVision, {
+          requests: [
+            {
+              image: {
+                content: image64.data
+              },
+              features: [{
+                //Or 'TEXT_DETECTION'
+                type: 'DOCUMENT_TEXT_DETECTION',
+                maxResults: 1
+              }]
+            }
+          ]
+        })
+        .then(function (response) {
+        console.log(response);
+        //var json = JSON.parse(response);
+        //console.log('json parse results: ' + json.data.responses.textAnnotations.description);
 
-   imagePath = imagePath.replace("file:///" , "/");
+        //Here he's setting a const variable to hold the different json object results
+        //from the cloud vision api.
+          const textAnnotations = response.data.responses[0].textAnnotations[0];
+          const textContent = textAnnotations.description;
 
-   console.log('This is the path: ' + imagePath);
+          Alert.alert(
+           'Google Cloud Vision',
+           'Text Results: ' + textContent);
 
-   Alert.alert(
-    'Alert Title',
-    'This is the path: ' + imagePath)
-
-
+        })
+        .catch(function (error) {
+          console.log(error, 'error');
+        });
+      }).catch(err => console.error(err));
   }
 
   render() {
@@ -101,7 +122,8 @@ export default class HomeScreen extends React.Component {
            captureTarget={Camera.constants.CaptureTarget.memory}
            style={styles.preview}
            aspect={Camera.constants.Aspect.fill}>
-           <MonoText style={styles.capture} onPress={this.takeGCVPicture.bind(this)}>[Cloud Vision]</MonoText>
+           <MonoText style={styles.capture} onPress={this.textDetextion.bind(this)}>[Text Detection]</MonoText>
+           <MonoText style={styles.capture} onPress={this.documentDetection.bind(this)}>[Document Detection]</MonoText>
        </Camera>
 
           <View
