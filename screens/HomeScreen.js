@@ -87,20 +87,6 @@ export default class HomeScreen extends React.Component {
     'Alert Title',
     'This is the path: ' + imagePath)
 
-   RNTesseractOcr.startOcr(imagePath, "LANG_ENGLISH")
-     .then((result) => {
-       this.setState({ ocrResult: result });
-       console.log("OCR Result: ", result);
-       tesseractResult = String(result);
-       Alert.alert(
-         'Alert Title',
-         result
-       )
-     })
-     .catch((err) => {
-       console.log("OCR Error: ", err);
-     })
-     .done();
 
   }
 
@@ -115,7 +101,6 @@ export default class HomeScreen extends React.Component {
            captureTarget={Camera.constants.CaptureTarget.memory}
            style={styles.preview}
            aspect={Camera.constants.Aspect.fill}>
-           <MonoText style={styles.capture} onPress={this.takeTesseractPicture.bind(this)}>[Tesseract]</MonoText>
            <MonoText style={styles.capture} onPress={this.takeGCVPicture.bind(this)}>[Cloud Vision]</MonoText>
        </Camera>
 
