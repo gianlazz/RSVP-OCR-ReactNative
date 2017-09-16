@@ -13,7 +13,6 @@ import {
 import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 import Camera from 'react-native-camera';
-import RNTesseractOcr from 'react-native-tesseract-ocr';
 import axios from 'axios';
 
 //DEFINING GLOBAL VARIABLES
@@ -24,7 +23,7 @@ const cloudVisionKey = 'AIzaSyADh2eyiZCxc4g1IMjc0PjQFudxKlFW3-s';
 const cloudVision = 'https://vision.googleapis.com/v1/images:annotate?key=' + cloudVisionKey;
 //Used for native OCR
 var imagePath;
-var tesseractResult;
+//var tesseractResult;
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
