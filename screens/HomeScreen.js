@@ -27,89 +27,42 @@ var imagePath;
 var tesseractResult;
 
 export default class HomeScreen extends React.Component {
-//This is my code for turning off react navigation header. It's part of the expo
-//boilerplate
   static navigationOptions = {
     header: null,
   };
 
-//Idk what the constructor does but this seems to be where
-//he defined the parameters for changing the state of the
-//view
-//Do I need any of this either?
-/*
-  constructor(props) {
-     super(props);
-     this.state = {
-       captureText: null,
-       showLoader: false,
-       sourceLanguage: 'en',
-       targetLanguage: null
-     };
-     this.setTextContent = this.setTextContent.bind(this);
-     this.toggleLoader = this.toggleLoader.bind(this);
-     // this.speakText = this.speakText.bind(this);
-     this.changeLanguage = this.changeLanguage.bind(this);
-   }
-*/
-
-//This is his takePicture() method
   takeGCVPicture() {
-    //const self = this;
-    //this.toggleLoader();
     this.camera.capture()
       .then((image64) => {
         console.log(image64.data);
-//This right here seems to be the only part doing the cloud vision api calls
+//This right here is the part doing the cloud vision api calls
         axios.post(cloudVision, {
-
           requests: [
             {
               image: {
                 content: image64.data
               },
               features: [{
+                //Or 'DOCUMENT_TEXT_DETECTION'
                 type: 'TEXT_DETECTION',
                 maxResults: 1
               }]
             }
           ]
-/*
-
-          "requests": [
-            {
-              "image": {
-                "content": image64.data
-              },
-              "features": [
-                {
-                  "type": "DOCUMENT_TEXT_DETECTION"
-                }
-              ]
-            }
-          ]
-*/
         })
-//Here he's setting a const variable to hold the different json object results
-//from the cloud vision api.
         .then(function (response) {
-//Here I'm going to need to change what it does with the response.
-//I'll probably just pop up an alert with the response for now. Or also console.log
         console.log(response);
-
         //var json = JSON.parse(response);
-
         //console.log('json parse results: ' + json.data.responses.textAnnotations.description);
 
+        //Here he's setting a const variable to hold the different json object results
+        //from the cloud vision api.
           const textAnnotations = response.data.responses[0].textAnnotations[0];
           const textContent = textAnnotations.description;
 
           Alert.alert(
            'Google Cloud Vision',
            'Text Results: ' + textContent);
-
-          //const detectedLanguage = textAnnotations.locale;
-          //self.setTextContent(textContent,detectedLanguage);
 
         })
         .catch(function (error) {
