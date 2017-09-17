@@ -4,7 +4,8 @@ import {
   StyleSheet,
   View,
   Text,
-  Slider, } from 'react-native';
+  Slider,
+  Button, } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 
 import { MonoText } from '../components/StyledText';
