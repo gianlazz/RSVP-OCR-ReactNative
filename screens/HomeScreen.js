@@ -10,9 +10,11 @@ import {
   Dimensions,
   Alert,
 } from 'react-native';
-import { WebBrowser } from 'expo';
+import { WebBrowser,
+         Camera,
+         Permissions, } from 'expo';
 import { MonoText } from '../components/StyledText';
-import Camera from 'react-native-camera';
+//import Camera from 'react-native-camera';
 import axios from 'axios';
 
 //DEFINING GLOBAL VARIABLES
@@ -29,6 +31,16 @@ export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
+
+  state = {
+    hasCameraPermission: null,
+    type: Camera.Constants.Type.back,
+  };
+
+  async componentWillMount() {
+    const { status } = await Permissions.askAsync(Permissions.CAMERA);
+    this.setState({ hasCameraPermission: status === 'granted' });
+  }
 
   textDetextion() {
     this.camera.capture()
@@ -93,7 +105,6 @@ export default class HomeScreen extends React.Component {
         console.log(response);
         //var json = JSON.parse(response);
         //console.log('json parse results: ' + json.data.responses.textAnnotations.description);
-
         //Here he's setting a const variable to hold the different json object results
         //from the cloud vision api.
           const textAnnotations = response.data.responses[0].textAnnotations[0];
@@ -111,28 +122,56 @@ export default class HomeScreen extends React.Component {
   }
 
   render() {
-    return (
-      <View style={styles.container}>
 
-        <Camera
-           ref={(cam) => {
-             this.camera = cam;
-           }}
-           captureTarget={Camera.constants.CaptureTarget.memory}
-           style={styles.preview}
-           aspect={Camera.constants.Aspect.fill}>
-           <MonoText style={styles.capture} onPress={this.textDetextion.bind(this)}>[Text Detection]</MonoText>
-           <MonoText style={styles.capture} onPress={this.documentDetection.bind(this)}>[Document Detection]</MonoText>
-       </Camera>
-
+    const { hasCameraPermission } = this.state;
+      if (hasCameraPermission === null) {
+        return <View />;
+      } else if (hasCameraPermission === false) {
+        return <Text>No access to camera</Text>;
+      } else {
+        return (
           <View
-            style={[styles.navigationFilename]}>
-          </View>
+            style={{ flex: 1 }}
+            style={styles.container}>
+            <Camera style={{ flex: 1 }} type={this.state.type}
+              ref={ref => { this.camera = ref; }}>
+              <View
+                style={{
+                  flex: 1,
+                  backgroundColor: 'transparent',
+                  flexDirection: 'row',
+                }}>
+                <TouchableOpacity
+                  style={{
+                    flex: 0.1,
+                    alignSelf: 'flex-end',
+                    alignItems: 'center',
+                  }}
+                  onPress={() => {
+                    this.setState({
+                      type: this.state.type === Camera.Constants.Type.back
+                        ? Camera.Constants.Type.front
+                        : Camera.Constants.Type.back,
+                    });
+                  }}>
+                  <Text
+                    style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
+                    {' '}Flip{' '}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </Camera>
 
-      </View>
-    );
+            <View
+              style={[styles.navigationFilename]}>
+            </View>
+
+          </View>
+        );
+      }
+    }
   }
-}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

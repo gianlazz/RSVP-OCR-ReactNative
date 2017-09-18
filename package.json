@@ -1,5 +1,5 @@
 {
-  "name": "react-native-ocr-speed-read",
+  "name": "react-native-expo-ocr-speed-read",
   "version": "0.0.0",
   "description": "Hello Expo!",
   "author": null,
@@ -17,7 +17,6 @@
     "expo": "^20.0.0",
     "react": "16.0.0-alpha.12",
     "react-native": "https://github.com/expo/react-native/archive/sdk-20.0.0.tar.gz",
-    "react-native-camera": "^0.10.0",
     "react-navigation": "^1.0.0-beta.12"
   },
   "devDependencies": {

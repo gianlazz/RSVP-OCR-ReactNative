@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "OCR Speed Read",
+    "name": "react-native-expo-ocr-speed-read",
     "description": "No description",
-    "slug": "react-native-ocr-speed-read",
+    "slug": "react-native-expo-ocr-speed-read",
     "privacy": "public",
     "sdkVersion": "20.0.0",
     "version": "1.0.0",
@@ -18,23 +18,10 @@
       "hideExponentText": false
     },
     "packagerOpts": {
-      "assetExts": [
-        "ttf"
-      ]
+      "assetExts": ["ttf"]
     },
     "ios": {
-      "bundleIdentifier": "com.lazztech.ocrspeedread",
-      "publishBundlePath": "ios/ocr-speed-read/Supporting/shell-app.bundle",
-      "publishManifestPath": "ios/ocr-speed-read/Supporting/shell-app-manifest.json"
-    },
-    "android": {
-      "package": "com.lazztech.ocrspeedread"
-    },
-    "isDetached": true,
-    "detach": {
-      "scheme": "exp507d8d28022d4526b42cc91fa8ffe8d9",
-      "iosExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/ios-v1.19.1-2-sdk20.0.0-1d5bb7d9-2160-4308-9cd1-ee44a73aa597.tar.gz",
-      "androidExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/android-v1.19.1-sdk20.0.0-5b613054-1239-439f-9c3a-0aad67cbe39a.tar.gz"
+      "supportsTablet": true
     }
   }
 }
