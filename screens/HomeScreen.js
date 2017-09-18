@@ -11,48 +11,103 @@ import {
   Alert,
 } from 'react-native';
 import { WebBrowser } from 'expo';
-
 import { MonoText } from '../components/StyledText';
-
 import Camera from 'react-native-camera';
-import RNTesseractOcr from 'react-native-tesseract-ocr';
+import axios from 'axios';
 
+//DEFINING GLOBAL VARIABLES
+
+// API KEYS
+const cloudVisionKey = 'AIzaSyADh2eyiZCxc4g1IMjc0PjQFudxKlFW3-s';
+// Endpoints
+const cloudVision = 'https://vision.googleapis.com/v1/images:annotate?key=' + cloudVisionKey;
+//Used for native OCR
 var imagePath;
-var tesseractResult;
+//var tesseractResult;
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
 
-  takePicture() {
-  this.camera.capture()
-   .then((path) => imagePath = String(path.path))
-   .catch(err => console.error(err));
+  textDetextion() {
+    this.camera.capture()
+      .then((image64) => {
+        console.log(image64.data);
+//This right here is the part doing the cloud vision api calls
+        axios.post(cloudVision, {
+          requests: [
+            {
+              image: {
+                content: image64.data
+              },
+              features: [{
+                //Or 'DOCUMENT_TEXT_DETECTION'
+                type: 'TEXT_DETECTION',
+                maxResults: 1
+              }]
+            }
+          ]
+        })
+        .then(function (response) {
+        console.log(response);
+        //var json = JSON.parse(response);
+        //console.log('json parse results: ' + json.data.responses.textAnnotations.description);
 
-   imagePath = imagePath.replace("file:///" , "/");
+        //Here he's setting a const variable to hold the different json object results
+        //from the cloud vision api.
+          const textAnnotations = response.data.responses[0].textAnnotations[0];
+          const textContent = textAnnotations.description;
 
-   console.log('This is the path: ' + imagePath);
+          Alert.alert(
+           'Google Cloud Vision',
+           'Text Results: ' + textContent);
 
-   Alert.alert(
-    'Alert Title',
-    'This is the path: ' + imagePath)
+        })
+        .catch(function (error) {
+          console.log(error, 'error');
+        });
+      }).catch(err => console.error(err));
+  }
 
-   RNTesseractOcr.startOcr(imagePath, "LANG_ENGLISH")
-     .then((result) => {
-       this.setState({ ocrResult: result });
-       console.log("OCR Result: ", result);
-       tesseractResult = String(result);
-       Alert.alert(
-         'Alert Title',
-         result
-       )
-     })
-     .catch((err) => {
-       console.log("OCR Error: ", err);
-     })
-     .done();
+  documentDetection() {
+    this.camera.capture()
+      .then((image64) => {
+        console.log(image64.data);
+//This right here is the part doing the cloud vision api calls
+        axios.post(cloudVision, {
+          requests: [
+            {
+              image: {
+                content: image64.data
+              },
+              features: [{
+                //Or 'TEXT_DETECTION'
+                type: 'DOCUMENT_TEXT_DETECTION',
+                maxResults: 1
+              }]
+            }
+          ]
+        })
+        .then(function (response) {
+        console.log(response);
+        //var json = JSON.parse(response);
+        //console.log('json parse results: ' + json.data.responses.textAnnotations.description);
 
+        //Here he's setting a const variable to hold the different json object results
+        //from the cloud vision api.
+          const textAnnotations = response.data.responses[0].textAnnotations[0];
+          const textContent = textAnnotations.description;
+
+          Alert.alert(
+           'Google Cloud Vision',
+           'Text Results: ' + textContent);
+
+        })
+        .catch(function (error) {
+          console.log(error, 'error');
+        });
+      }).catch(err => console.error(err));
   }
 
   render() {
@@ -63,10 +118,11 @@ export default class HomeScreen extends React.Component {
            ref={(cam) => {
              this.camera = cam;
            }}
+           captureTarget={Camera.constants.CaptureTarget.memory}
            style={styles.preview}
            aspect={Camera.constants.Aspect.fill}>
-           <MonoText style={styles.capture} onPress={this.takePicture.bind(this)}>[Tesseract]</MonoText>
-           <MonoText style={styles.capture} onPress={this.takePicture.bind(this)}>[Cloud Vision]</MonoText>
+           <MonoText style={styles.capture} onPress={this.textDetextion.bind(this)}>[Text Detection]</MonoText>
+           <MonoText style={styles.capture} onPress={this.documentDetection.bind(this)}>[Document Detection]</MonoText>
        </Camera>
 
           <View
@@ -76,43 +132,7 @@ export default class HomeScreen extends React.Component {
       </View>
     );
   }
-
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use
-          useful development tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
-  }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/development-mode'
-    );
-  };
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
-  };
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

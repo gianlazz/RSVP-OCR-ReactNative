@@ -4,7 +4,8 @@ import {
   StyleSheet,
   View,
   Text,
-  Slider, } from 'react-native';
+  Slider,
+  Button, } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 
 import { MonoText } from '../components/StyledText';
@@ -35,9 +36,9 @@ export default class LinksScreen extends React.Component {
             </View>
 
             <View style={[styles.wpmContainer, styles.boxContainer, styles.boxThree]}>
-              <Button title="-"/>
+              
                 <MonoText style={styles.wpm}>WPM 300</MonoText>
-              <Button title="+"/>
+
             </View>
 
         </View>
