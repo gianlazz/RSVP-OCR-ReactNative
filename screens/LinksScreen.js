@@ -36,7 +36,7 @@ export default class LinksScreen extends React.Component {
             </View>
 
             <View style={[styles.wpmContainer, styles.boxContainer, styles.boxThree]}>
-              
+
                 <MonoText style={styles.wpm}>WPM 300</MonoText>
 
             </View>
