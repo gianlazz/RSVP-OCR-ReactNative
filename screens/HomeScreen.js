@@ -9,8 +9,6 @@ import {
   View,
   Dimensions,
   Alert,
-  Modal,
-  TouchableHighlight,
 } from 'react-native';
 import {
   WebBrowser,
@@ -38,14 +36,9 @@ export default class HomeScreen extends React.Component {
   };
 
   state = {
-    modalVisible: false,
     hasCameraPermission: null,
     type: Camera.Constants.Type.back,
   };
-
-  setModalVisible(visible) {
-    this.setState({modalVisible: visible});
-  }
 
   componentDidMount() {
   FileSystem.makeDirectoryAsync(
@@ -187,32 +180,6 @@ takePicture = async function() {
                   backgroundColor: 'transparent',
                   flexDirection: 'row',
                 }}>
-
-                <Modal
-                animationType="fade"
-                transparent={false}
-                visible={this.state.modalVisible}
-                onRequestClose={() => {alert("Modal has been closed.")}}
-                >
-               <View style={{marginTop: 22}}>
-                <View>
-                  <Text>Hello World!</Text>
-
-                  <TouchableHighlight onPress={() => {
-                    this.setModalVisible(!this.state.modalVisible)
-                  }}>
-                    <Text>Hide Modal</Text>
-                  </TouchableHighlight>
-
-                </View>
-               </View>
-              </Modal>
-
-              <TouchableHighlight onPress={() => {
-                this.setModalVisible(true)
-              }}>
-                <Text>Show Modal</Text>
-              </TouchableHighlight>
 
                 <TouchableOpacity
                   style={{
