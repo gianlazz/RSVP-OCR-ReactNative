@@ -10,9 +10,12 @@ import {
   Dimensions,
   Alert,
 } from 'react-native';
-import { WebBrowser,
-         Camera,
-         Permissions, } from 'expo';
+import {
+  WebBrowser,
+  Camera,
+  Permissions,
+  FileSystem,
+} from 'expo';
 import { MonoText } from '../components/StyledText';
 //import Camera from 'react-native-camera';
 import axios from 'axios';
@@ -37,10 +40,49 @@ export default class HomeScreen extends React.Component {
     type: Camera.Constants.Type.back,
   };
 
+  componentDidMount() {
+  FileSystem.makeDirectoryAsync(
+    FileSystem.documentDirectory + 'photos'
+  ).catch(e => {
+    console.log(e, 'Directory exists');
+  });
+}
+
   async componentWillMount() {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
     this.setState({ hasCameraPermission: status === 'granted' });
   }
+/*
+  takePicture = async function() {
+    if (this.camera) {
+      this.camera.takePictureAsync().then(data => {
+        FileSystem.moveAsync({
+          from: data,
+          to: `${FileSystem.documentDirectory}photos/Photo_${this.state
+            .photoId}.jpg`,
+        }).then(() => {
+          this.setState({
+            photoId: this.state.photoId + 1,
+          });
+          Vibration.vibrate();
+        });
+      });
+    }
+  };
+*/
+
+takePicture = async function() {
+  if (this.camera) {
+    this.camera.takePictureAsync().then(data => {
+            console.log(data);
+
+            Alert.alert(
+             'Google Cloud Vision',
+             'Text Results: ' + data);
+
+             });
+      }
+    };
 
   textDetextion() {
     this.camera.capture()
@@ -122,7 +164,6 @@ export default class HomeScreen extends React.Component {
   }
 
   render() {
-
     const { hasCameraPermission } = this.state;
       if (hasCameraPermission === null) {
         return <View />;
@@ -130,9 +171,7 @@ export default class HomeScreen extends React.Component {
         return <Text>No access to camera</Text>;
       } else {
         return (
-          <View
-            style={{ flex: 1 }}
-            style={styles.container}>
+          <View style={styles.container}>
             <Camera style={{ flex: 1 }} type={this.state.type}
               ref={ref => { this.camera = ref; }}>
               <View
@@ -141,27 +180,22 @@ export default class HomeScreen extends React.Component {
                   backgroundColor: 'transparent',
                   flexDirection: 'row',
                 }}>
+
                 <TouchableOpacity
                   style={{
-                    flex: 0.1,
+                    flex: 1.0,
                     alignSelf: 'flex-end',
                     alignItems: 'center',
                   }}
-                  onPress={() => {
-                    this.setState({
-                      type: this.state.type === Camera.Constants.Type.back
-                        ? Camera.Constants.Type.front
-                        : Camera.Constants.Type.back,
-                    });
-                  }}>
+onPress={this.takePicture.bind(this)}>
                   <Text
                     style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
-                    {' '}Flip{' '}
+                    {' '}Capture{' '}
                   </Text>
                 </TouchableOpacity>
+
               </View>
             </Camera>
-
             <View
               style={[styles.navigationFilename]}>
             </View>
