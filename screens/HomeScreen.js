@@ -64,24 +64,6 @@ export default class HomeScreen extends React.Component {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
     this.setState({ hasCameraPermission: status === 'granted' });
   }
-/*
-  takePicture = async function() {
-    if (this.camera) {
-      this.camera.takePictureAsync().then(data => {
-        FileSystem.moveAsync({
-          from: data,
-          to: `${FileSystem.documentDirectory}photos/Photo_${this.state
-            .photoId}.jpg`,
-        }).then(() => {
-          this.setState({
-            photoId: this.state.photoId + 1,
-          });
-          Vibration.vibrate();
-        });
-      });
-    }
-  };
-*/
 
 takePicture = async function() {
   if (this.camera) {
