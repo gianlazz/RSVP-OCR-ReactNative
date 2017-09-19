@@ -6,6 +6,7 @@ Uses native client side tesseract OCR and then does Rapid Serial Visual Presenta
  This one right below has good example code for axios api http request handling with google cloud vision!		
  
  This looks like a great alternative backend to firebase.
+ 
  https://www.graph.cool
  		
  https://blog.hellojs.org/an-augmented-reality-experiment-in-react-native-fc473f6c1b5c		
