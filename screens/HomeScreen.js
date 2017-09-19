@@ -16,12 +16,14 @@ import {
   Permissions,
   FileSystem,
 } from 'expo';
+import Button from 'react-native-button';
+import Modal from 'react-native-modalbox';
 import { MonoText } from '../components/StyledText';
 //import Camera from 'react-native-camera';
 import axios from 'axios';
 
 //DEFINING GLOBAL VARIABLES
-
+var screen = Dimensions.get('window');
 // API KEYS
 const cloudVisionKey = 'AIzaSyADh2eyiZCxc4g1IMjc0PjQFudxKlFW3-s';
 // Endpoints
@@ -31,6 +33,16 @@ var imagePath;
 //var tesseractResult;
 
 export default class HomeScreen extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isOpen: false,
+      isDisabled: false,
+      swipeToClose: true,
+      sliderValue: 0.3
+    };
+  }
+
   static navigationOptions = {
     header: null,
   };
@@ -181,13 +193,25 @@ takePicture = async function() {
                   flexDirection: 'row',
                 }}>
 
+                <Button onPress={() => this.refs.modal1.open()} style={styles.btn}>Basic modal</Button>
+                <Modal
+                    style={[styles.modal, styles.modal1]}
+                    ref={"modal1"}
+                    swipeToClose={this.state.swipeToClose}
+                    onClosed={this.onClose}
+                    onOpened={this.onOpen}
+                    onClosingState={this.onClosingState}>
+                  <Text style={styles.text}>Basic modal</Text>
+                  <Button onPress={() => this.setState({swipeToClose: !this.state.swipeToClose})} style={styles.btn}>Disable swipeToClose({this.state.swipeToClose ? "true" : "false"})</Button>
+                </Modal>
+
                 <TouchableOpacity
                   style={{
                     flex: 1.0,
                     alignSelf: 'flex-end',
                     alignItems: 'center',
                   }}
-onPress={this.takePicture.bind(this)}>
+                  onPress={this.takePicture.bind(this)}>
                   <Text
                     style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
                     {' '}Capture{' '}
@@ -211,6 +235,24 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+
+  modal: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  btnModal: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    width: 50,
+    height: 50,
+    backgroundColor: "transparent"
+  },
+  text: {
+    color: "black",
+    fontSize: 22
+  },
+
   preview: {
     flex: 1,
     justifyContent: 'flex-end',
