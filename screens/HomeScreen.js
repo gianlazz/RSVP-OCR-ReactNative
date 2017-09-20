@@ -67,11 +67,12 @@ export default class HomeScreen extends React.Component {
   }
 
 takePicture = async function() {
+
+  this.refs.modal1.open()
+
   if (this.camera) {
     this.camera.takePictureAsync().then(data => {
             console.log(data);
-
-            this.refs.modal1.open()
 
             Alert.alert(
              'Google Cloud Vision',
