@@ -70,6 +70,8 @@ takePicture = async function() {
     this.camera.takePictureAsync().then(data => {
             console.log(data);
 
+            this.refs.modal1.open()
+
             Alert.alert(
              'Google Cloud Vision',
              'Text Results: ' + data);
