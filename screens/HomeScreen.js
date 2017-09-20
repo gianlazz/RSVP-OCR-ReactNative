@@ -137,7 +137,6 @@ takePicture = async function() {
                   flexDirection: 'row',
                 }}>
 
-                <Button onPress={() => this.refs.modal1.open()} style={styles.btn}>Basic modal</Button>
                 <Modal
                     style={[styles.modal, styles.modal1]}
                     ref={"modal1"}
@@ -146,7 +145,6 @@ takePicture = async function() {
                     onOpened={this.onOpen}
                     onClosingState={this.onClosingState}>
                   <Text style={styles.text}>Basic modal</Text>
-                  <Button onPress={() => this.setState({swipeToClose: !this.state.swipeToClose})} style={styles.btn}>Disable swipeToClose({this.state.swipeToClose ? "true" : "false"})</Button>
                 </Modal>
 
                 <TouchableOpacity
