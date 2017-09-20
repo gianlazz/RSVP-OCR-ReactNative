@@ -146,7 +146,6 @@ takePicture = async function() {
                     onOpened={this.onOpen}
                     onClosingState={this.onClosingState}>
 
-                  <Text style={styles.text}>Basic modal</Text>
                   <RSVP>this is the RSVP component</RSVP>
 
                 </Modal>
@@ -158,10 +157,10 @@ takePicture = async function() {
                     alignItems: 'center',
                   }}
                   onPress={this.takePicture.bind(this)}>
-                  <Text
-                    style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
+                  <MonoText
+                    style={{ fontSize: 20, marginBottom: 25, color: 'white' }}>
                     {' '}Capture{' '}
-                  </Text>
+                  </MonoText>
                 </TouchableOpacity>
 
               </View>
@@ -193,10 +192,6 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     backgroundColor: "transparent"
-  },
-  text: {
-    color: "black",
-    fontSize: 22
   },
 
   preview: {
