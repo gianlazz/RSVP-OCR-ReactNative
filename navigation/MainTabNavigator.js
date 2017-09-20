@@ -11,10 +11,10 @@ import SettingsScreen from '../screens/SettingsScreen';
 
 export default TabNavigator(
   {
-    OCR: {
+    Scan: {
       screen: HomeScreen,
     },
-    RSVP: {
+    Archive: {
       screen: LinksScreen,
     },
     Settings: {
@@ -27,15 +27,15 @@ export default TabNavigator(
         const { routeName } = navigation.state;
         let iconName;
         switch (routeName) {
-          case 'OCR':
+          case 'Scan':
             iconName = Platform.OS === 'ios'
-              ? `ios-information-circle${focused ? '' : '-outline'}`
-              : 'md-information-circle';
+              ? `ios-qr-scanner${focused ? '' : '-outline'}`
+              : 'md-qr-scanner';
             break;
-          case 'RSVP':
+          case 'Archive':
             iconName = Platform.OS === 'ios'
-              ? `ios-link${focused ? '' : '-outline'}`
-              : 'md-link';
+              ? `ios-archive${focused ? '' : '-outline'}`
+              : 'md-archive';
             break;
           case 'Settings':
             iconName = Platform.OS === 'ios'
