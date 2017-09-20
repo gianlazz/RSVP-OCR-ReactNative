@@ -19,6 +19,7 @@ import {
 import Button from 'react-native-button';
 import Modal from 'react-native-modalbox';
 import { MonoText } from '../components/StyledText';
+import { RSVP } from '../components/RSVP';
 //import Camera from 'react-native-camera';
 import axios from 'axios';
 
@@ -144,7 +145,10 @@ takePicture = async function() {
                     onClosed={this.onClose}
                     onOpened={this.onOpen}
                     onClosingState={this.onClosingState}>
+
                   <Text style={styles.text}>Basic modal</Text>
+                  <RSVP>this is the RSVP component</RSVP>
+
                 </Modal>
 
                 <TouchableOpacity
