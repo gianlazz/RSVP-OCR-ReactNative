@@ -191,6 +191,15 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: "transparent"
   },
+  rsvp: {
+      //flex: 2,
+      //flex-grow: 1;
+    textAlign: 'center',
+    color: '#4A90E2',
+      //font-family: Futura_Medium;
+    fontSize: 30,
+
+  },
 
   preview: {
     flex: 1,
