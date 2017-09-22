@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
   },
 
   boxThree: {
-    backgroundColor: '#CE6D39',
+    //backgroundColor: '#CE6D39',
   },
 
   pauseText: {
@@ -129,8 +129,8 @@ const styles = StyleSheet.create({
       //flex-grow: 1;
     textAlign: 'center',
     color: '#4A90E2',
-      //font-family: Futura_Medium;
     fontSize: 30,
+    fontFamily: 'futura',
 
   },
 
