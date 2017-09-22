@@ -21,6 +21,11 @@ take that prop and run it through the rsvp()
 after it's split into the incrementing index array
 have the rsvp() set the state of the main text View
 of this RSVP Component
+
+Also have it say Loading... with the dots changing,
+all while being in red until the prop string is recieved
+and done being split. Then change back to blue as the first
+word in the split array waiting for the user to touch it.
 */
 
   state = {
