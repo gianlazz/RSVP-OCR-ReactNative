@@ -26,6 +26,10 @@ Also have it say Loading... with the dots changing,
 all while being in red until the prop string is recieved
 and done being split. Then change back to blue as the first
 word in the split array waiting for the user to touch it.
+
+Set the rsvpDisplay to "First word in the array: " + splitStringArray[index]
+that way it won't be blank when it first displayes. Though that will
+have to run right away for the render
 */
 
   state = {
