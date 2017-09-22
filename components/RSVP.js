@@ -5,26 +5,69 @@ import {
   View,
   Text,
   Slider,
-  Button, } from 'react-native';
+  Button,
+  TouchableOpacity,
+  Alert, } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
 
+var rsvpString;
+var demoString = "Angular is a TypeScript-based open-source front-end web application platform led by the Angular Team at Google and by a community of individuals and corporations to address all of the parts of the developer's workflow while building complex web applications. Angular is a complete rewrite from the same team that built AngularJS.";
+
 export class RSVP extends React.Component {
+/*
+Pass the string to this components as a prop
+take that prop and run it through the rsvp()
+after it's split into the incrementing index array
+have the rsvp() set the state of the main text View
+of this RSVP Component
+*/
+
+  state = {
+    rsvpDisplay: "",
+  };
+
+  async rsvp() {
+  console.log(demoString.split(/[\s]+/));
+   let splitStringArray = demoString.split(/[\s]+/);
+//     Alert.alert(
+//      'splitStringArray',
+//      'Results: ' + splitStringArray);
+   let index = 0;
+     console.log("First word in the array: " + splitStringArray[index])
+     console.log("Number of index: " + splitStringArray.length)
+   while (index < splitStringArray.length){
+     console.log(index)
+    rsvpString = splitStringArray[index]
+     console.log(rsvpString)
+     //Set the state right here:
+     this.setState({rsvpDisplay: rsvpString});
+    await new Promise(r => setTimeout(r, 150));
+    index++
+   }
+  }
+
   render() {
     return (
       <View style={styles.container}>
-
-        <Text
-          {...this.props}
-          style={[this.props.style, { fontFamily: 'futura' }]}
-        />
 
           <View style={[styles.boxContainer, styles.boxOne]}>
             <MonoText style={styles.pauseText}>Tap on the words to play</MonoText>
           </View>
 
           <View style={[styles.boxContainer, styles.boxTwo]}>
-            <MonoText style={styles.rsvp}>RSVPSTRING</MonoText>
+            <TouchableOpacity
+              onPress={this.rsvp.bind(this)}>
+              <Text style={styles.rsvp}
+                {...this.props} />
+            </TouchableOpacity>
+          </View>
+
+          <View style={[styles.boxContainer, styles.boxTwo]}>
+            <TouchableOpacity
+              onPress={this.rsvp.bind(this)}>
+              <Text style={styles.rsvp}>{this.state.rsvpDisplay}</Text>
+            </TouchableOpacity>
           </View>
 
           <View style={styles.boxTwo}>
