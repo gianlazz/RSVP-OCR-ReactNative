@@ -20,25 +20,7 @@ export default class LinksScreen extends React.Component {
         <View style={styles.container}>
 
             <View style={[styles.boxContainer, styles.boxOne]}>
-              <MonoText style={styles.pauseText}>Tap on the words to play</MonoText>
-            </View>
-
-            <View style={[styles.boxContainer, styles.boxTwo]}>
-              <MonoText style={styles.rsvp}>RSVPSTRING</MonoText>
-            </View>
-
-            <View style={styles.boxTwo}>
-              <Slider
-                thumbTintColor={'#4A90E2'}
-                minimumTrackTintColor={'#4A90E2'}
-                maximumTrackTintColor={'#4A90E2'}>
-              </Slider>
-            </View>
-
-            <View style={[styles.wpmContainer, styles.boxContainer, styles.boxThree]}>
-
-                <MonoText style={styles.wpm}>WPM 300</MonoText>
-
+              <MonoText style={styles.pauseText}>Archive</MonoText>
             </View>
 
         </View>
