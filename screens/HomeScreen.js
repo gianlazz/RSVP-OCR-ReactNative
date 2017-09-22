@@ -144,7 +144,7 @@ takePicture = async function() {
                     onOpened={this.onOpen}
                     onClosingState={this.onClosingState}>
 
-                  <RSVP>this is the RSVP component</RSVP>
+                  <RSVP>Loading...</RSVP>
 
                 </Modal>
 
