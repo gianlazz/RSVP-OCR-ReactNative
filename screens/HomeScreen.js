@@ -29,9 +29,6 @@ var screen = Dimensions.get('window');
 const cloudVisionKey = 'AIzaSyADh2eyiZCxc4g1IMjc0PjQFudxKlFW3-s';
 // Endpoints
 const cloudVision = 'https://vision.googleapis.com/v1/images:annotate?key=' + cloudVisionKey;
-//Used for native OCR
-var imagePath;
-//var tesseractResult;
 
 export default class HomeScreen extends React.Component {
   constructor() {
