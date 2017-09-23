@@ -33,7 +33,7 @@ have to run right away for the render
 */
 
   state = {
-    rsvpDisplay: "",
+    rsvpDisplay: "Placeholder",
   };
 
   async rsvp() {
