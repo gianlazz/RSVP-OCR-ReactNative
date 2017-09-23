@@ -3,7 +3,7 @@
     "name": "react-native-expo-ocr-speed-read",
     "description": "No description",
     "slug": "react-native-expo-ocr-speed-read",
-    "privacy": "public",
+    "privacy": "unlisted",
     "sdkVersion": "21.0.0",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -22,6 +22,12 @@
     },
     "ios": {
       "supportsTablet": true
+    },
+    "ios": {
+      "bundleIdentifier": "com.lazztech.OCRSpeedReader"
+    },
+    "android": {
+      "package": "com.lazztech.OCRSpeedReader"
     }
   }
 }
