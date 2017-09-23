@@ -64,16 +64,46 @@ export default class HomeScreen extends React.Component {
   }
 
 takePicture = async function() {
-
-  this.refs.modal1.open()
-
+this.refs.modal1.open()  
   if (this.camera) {
-    this.camera.takePictureAsync().then(data => {
-            console.log(data);
+    this.camera.takePictureAsync({
+      quality: 0.1,
+      base64: true,
+    }).then(data => {
+        console.log(data.base64);
+        //This right here is the part doing the cloud vision api calls
+        axios.post(cloudVision, {
+          requests: [
+            {
+              image: {
+                content: data.base64
+              },
+              features: [{
+                //Or 'TEXT_DETECTION'
+                type: 'DOCUMENT_TEXT_DETECTION',
+                maxResults: 1
+              }]
+            }
+          ]
+        })
+        .then(function (response) {
+        console.log(response);
+        //var json = JSON.parse(response);
+        //console.log('json parse results: ' + json.data.responses.textAnnotations.description);
+        //Here he's setting a const variable to hold the different json object results
+        //from the cloud vision api.
+          const textAnnotations = response.data.responses[0].textAnnotations[0];
+          const textContent = textAnnotations.description;
 
-            Alert.alert(
-             'Google Cloud Vision',
-             'Text Results: ' + data);
+          Alert.alert(
+           'Google Cloud Vision',
+           'Text Results: ' + textContent);
+
+        })
+        .catch(function (error) {
+          console.log(error, 'error');
+        }).catch(err => console.error(err));
+
 
              });
       }
