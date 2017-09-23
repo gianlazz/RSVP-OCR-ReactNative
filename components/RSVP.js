@@ -63,7 +63,7 @@ have to run right away for the render
           <View style={[styles.boxContainer, styles.boxOne]}>
             <MonoText style={styles.pauseText}>Tap on the words to play</MonoText>
           </View>
-
+{/*
           <View style={[styles.boxContainer, styles.boxTwo]}>
             <TouchableOpacity
               onPress={this.rsvp.bind(this)}>
@@ -71,7 +71,7 @@ have to run right away for the render
                 {...this.props} />
             </TouchableOpacity>
           </View>
-
+*/}
           <View style={[styles.boxContainer, styles.boxTwo]}>
             <TouchableOpacity
               onPress={this.rsvp.bind(this)}>
