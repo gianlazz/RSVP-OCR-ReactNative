@@ -70,7 +70,7 @@ this.refs.modal1.open()
       quality: 0.1,
       base64: true,
     }).then(data => {
-        console.log(data.base64);
+        //console.log(data.base64);
         //This right here is the part doing the cloud vision api calls
         axios.post(cloudVision, {
           requests: [
@@ -87,7 +87,7 @@ this.refs.modal1.open()
           ]
         })
         .then(function (response) {
-        console.log(response);
+        //console.log(response);
         //var json = JSON.parse(response);
         //console.log('json parse results: ' + json.data.responses.textAnnotations.description);
         //Here he's setting a const variable to hold the different json object results
