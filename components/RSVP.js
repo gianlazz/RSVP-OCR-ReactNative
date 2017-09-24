@@ -41,6 +41,7 @@ have to run right away for the render
   }
   async rsvp() {
   console.log(demoString.split(/[\s]+/));
+  console.log(JSON.stringify(this.props).replace("\n", " ").split(/[\s]+/));
    let splitStringArray = demoString.split(/[\s]+/);
 //     Alert.alert(
 //      'splitStringArray',
@@ -57,7 +58,7 @@ have to run right away for the render
     await new Promise(r => setTimeout(r, 150));
     index++
    }
-  }
+ }
 
   render() {
     return (
