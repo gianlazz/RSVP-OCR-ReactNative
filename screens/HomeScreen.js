@@ -102,7 +102,7 @@ this.refs.modal1.open()
            'Text Results: ' + textContent);
           this.setState({ocrString: textContent});
 
-        })
+        }.bind(this))
         .catch(function (error) {
           console.log(error, 'error');
         }).catch(err => console.error(err));
