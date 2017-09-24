@@ -100,6 +100,7 @@ this.refs.modal1.open()
           Alert.alert(
            'Google Cloud Vision',
            'Text Results: ' + textContent);
+          this.setState({ocrString: textContent});
 
         })
         .catch(function (error) {
