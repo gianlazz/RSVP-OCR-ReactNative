@@ -37,7 +37,8 @@ export default class HomeScreen extends React.Component {
       isOpen: false,
       isDisabled: false,
       swipeToClose: true,
-      sliderValue: 0.3
+      sliderValue: 0.3,
+      ocrString: "ocrString",
     };
   }
 
@@ -48,6 +49,7 @@ export default class HomeScreen extends React.Component {
   state = {
     hasCameraPermission: null,
     type: Camera.Constants.Type.back,
+    ocrString: "ocrString",
   };
 
   componentDidMount() {
