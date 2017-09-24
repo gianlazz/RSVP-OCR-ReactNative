@@ -32,10 +32,13 @@ that way it won't be blank when it first displayes. Though that will
 have to run right away for the render
 */
 
-  state = {
-    rsvpDisplay: "Placeholder",
-  };
-
+  constructor(props){
+    super(props);
+    this.state = {
+      rsvpDisplay: "Placeholder",
+      ocrString2: "Loading...",
+    };
+  }
   async rsvp() {
   console.log(demoString.split(/[\s]+/));
    let splitStringArray = demoString.split(/[\s]+/);
