@@ -30,6 +30,8 @@ const cloudVisionKey = 'AIzaSyADh2eyiZCxc4g1IMjc0PjQFudxKlFW3-s';
 // Endpoints
 const cloudVision = 'https://vision.googleapis.com/v1/images:annotate?key=' + cloudVisionKey;
 
+var textContent;
+
 export default class HomeScreen extends React.Component {
   constructor() {
     super();
@@ -95,8 +97,9 @@ this.refs.modal1.open()
         //Here he's setting a const variable to hold the different json object results
         //from the cloud vision api.
           const textAnnotations = response.data.responses[0].textAnnotations[0];
-          const textContent = textAnnotations.description;
+          textContent = textAnnotations.description;
 
+          console.log(textContent);
           Alert.alert(
            'Google Cloud Vision',
            'Text Results: ' + textContent);
