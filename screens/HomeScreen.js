@@ -100,9 +100,11 @@ this.refs.modal1.open()
           textContent = textAnnotations.description;
 
           console.log(textContent);
+/*
           Alert.alert(
            'Google Cloud Vision',
            'Text Results: ' + textContent);
+*/
           this.setState({ocrString: textContent});
 
         }.bind(this))
@@ -141,7 +143,7 @@ this.refs.modal1.open()
                     onOpened={this.onOpen}
                     onClosingState={this.onClosingState}>
 
-                  <RSVP>Loading...</RSVP>
+                  <RSVP>{this.state.ocrString}</RSVP>
 
                 </Modal>
 
