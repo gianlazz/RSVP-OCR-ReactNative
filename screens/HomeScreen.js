@@ -109,45 +109,6 @@ this.refs.modal1.open()
       }
     };
 
-  documentDetection() {
-    this.camera.capture()
-      .then((image64) => {
-        console.log(image64.data);
-//This right here is the part doing the cloud vision api calls
-        axios.post(cloudVision, {
-          requests: [
-            {
-              image: {
-                content: image64.data
-              },
-              features: [{
-                //Or 'TEXT_DETECTION'
-                type: 'DOCUMENT_TEXT_DETECTION',
-                maxResults: 1
-              }]
-            }
-          ]
-        })
-        .then(function (response) {
-        console.log(response);
-        //var json = JSON.parse(response);
-        //console.log('json parse results: ' + json.data.responses.textAnnotations.description);
-        //Here he's setting a const variable to hold the different json object results
-        //from the cloud vision api.
-          const textAnnotations = response.data.responses[0].textAnnotations[0];
-          const textContent = textAnnotations.description;
-
-          Alert.alert(
-           'Google Cloud Vision',
-           'Text Results: ' + textContent);
-
-        })
-        .catch(function (error) {
-          console.log(error, 'error');
-        });
-      }).catch(err => console.error(err));
-  }
-
   render() {
     const { hasCameraPermission } = this.state;
       if (hasCameraPermission === null) {
