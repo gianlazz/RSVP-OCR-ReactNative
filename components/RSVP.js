@@ -49,38 +49,56 @@ have to run right away for the render
 
     //I could do this as a for loop and push "." to the end each time
            this.setState({rsvpColor: '#E74C3C'});
+    while(this.state.continueLoading === true) {
+           if (this.state.continueLoading !== true) return;
            this.setState({rsvpDisplay: "Loading"});
+           if (this.state.continueLoading !== true) return;
            await new Promise(r => setTimeout(r, 1000));
+           if (this.state.continueLoading !== true) return;
            this.setState({rsvpDisplay: "Loading."});
+           if (this.state.continueLoading !== true) return;
            await new Promise(r => setTimeout(r, 1000));
+           if (this.state.continueLoading !== true) return;
            this.setState({rsvpDisplay: "Loading.."});
+           if (this.state.continueLoading !== true) return;
            await new Promise(r => setTimeout(r, 1000));
+           if (this.state.continueLoading !== true) return;
            this.setState({rsvpDisplay: "Loading..."});
-//    let splitStringArray = JSON.stringify(this.props).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/);
-//    this.setState({rsvpDisplay: splitStringArray[0]});
+           if (this.state.continueLoading !== true) return;
+           await new Promise(r => setTimeout(r, 1000));
+        }
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps !== this.props) {
+      let splitStringArray = JSON.stringify(nextProps).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/);
+      this.setState({continueLoading: false});
+      this.setState({rsvpDisplay: splitStringArray[0]});
+      this.setState({rsvpColor: '#4A90E2'});
+      this.setState({rsvpIsTouchable: true});
+    }
   }
 
 //Might need to make this await the prop promise?
   async rsvp() {
-  console.log(demoString.split(/[\s]+/));
-  console.log(JSON.stringify(this.props));
-  console.log(JSON.stringify(this.props).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/));
-   //let splitStringArray = demoString.split(/[\s]+/);
-   let splitStringArray = JSON.stringify(this.props).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/);
+    console.log(demoString.split(/[\s]+/));
+    console.log(JSON.stringify(this.props));
+    console.log(JSON.stringify(this.props).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/));
+    let splitStringArray = JSON.stringify(this.props).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/);
 //     Alert.alert(
 //      'splitStringArray',
 //      'Results: ' + splitStringArray);
-   let index = 0;
-     console.log("First word in the array: " + splitStringArray[index])
-     console.log("Number of index: " + splitStringArray.length)
+    let index = 0;
+    console.log("First word in the array: " + splitStringArray[index])
+    console.log("Number of index: " + splitStringArray.length)
    while (index < splitStringArray.length){
      //console.log(index)
-    rsvpString = splitStringArray[index]
+     rsvpString = splitStringArray[index]
      //console.log(rsvpString)
      //Set the state right here:
      this.setState({rsvpDisplay: rsvpString});
-    await new Promise(r => setTimeout(r, 150));
-    index++
+     await new Promise(r => setTimeout(r, 150));
+     index++
    }
  }
 
