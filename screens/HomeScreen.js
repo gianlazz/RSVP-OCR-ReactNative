@@ -100,12 +100,11 @@ this.refs.modal1.open()
           textContent = textAnnotations.description;
 
           console.log(textContent);
-/*
-          Alert.alert(
-           'Google Cloud Vision',
-           'Text Results: ' + textContent);
-*/
           this.setState({ocrString: textContent});
+
+                    Alert.alert(
+                     'Google Cloud Vision',
+                     'Text Results: ' + textContent);
 
         }.bind(this))
         .catch(function (error) {
