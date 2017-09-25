@@ -87,26 +87,15 @@ have to run right away for the render
   render() {
     return (
       <View style={styles.container}>
-
           <View style={[styles.boxContainer, styles.boxOne]}>
             <MonoText style={styles.pauseText}>Tap on the words to play</MonoText>
           </View>
-{/*
-          <View style={[styles.boxContainer, styles.boxTwo]}>
-            <TouchableOpacity
-              onPress={this.rsvp.bind(this)}>
-              <Text style={styles.rsvp}
-                {...this.props} />
-            </TouchableOpacity>
-          </View>
-*/}
           <View style={[styles.boxContainer, styles.boxTwo]}>
             <TouchableOpacity
               onPress={this.rsvp.bind(this)}>
               <Text style={[styles.rsvp, {color: this.state.rsvpColor}]}>{this.state.rsvpDisplay}</Text>
             </TouchableOpacity>
           </View>
-
           <View style={styles.boxTwo}>
             <Slider
               thumbTintColor={'#4A90E2'}
@@ -114,13 +103,9 @@ have to run right away for the render
               maximumTrackTintColor={'#4A90E2'}>
             </Slider>
           </View>
-
           <View style={[styles.wpmContainer, styles.boxContainer, styles.boxThree]}>
-
               <MonoText style={styles.wpm}>WPM 300</MonoText>
-
           </View>
-
       </View>
     );
   }
@@ -133,25 +118,20 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     backgroundColor: '#fff',
   },
-
   boxContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
-
   boxOne: {
     //backgroundColor: '#FFEEE4',
   },
-
   boxTwo: {
     //backgroundColor: '#F17F42'
   },
-
   boxThree: {
     //backgroundColor: '#CE6D39',
   },
-
   pauseText: {
     //flex: 1,
     //textAlign: 'center',
@@ -160,7 +140,6 @@ const styles = StyleSheet.create({
     //fontSize: 6,
     //font-family: Futura_Medium;
   },
-
   rsvp: {
       //flex: 2,
       //flex-grow: 1;
@@ -169,12 +148,10 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: 'futura',
   },
-
   slider: {
     //flex: 3;
     //flex-grow: 1;
   },
-
   wpmContainer: {
     //flex: 4,
     bottom: 0,
@@ -186,7 +163,6 @@ const styles = StyleSheet.create({
     marginRight: 130,
     marginBottom: 20,
   },
-
   wpm: {
     fontWeight: 'bold',
     //font-size: 3vw;
@@ -194,5 +170,4 @@ const styles = StyleSheet.create({
     color: '#9B9B9B',
     //font-family: Futura_Medium;
   },
-
 });
