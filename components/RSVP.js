@@ -39,10 +39,13 @@ have to run right away for the render
       ocrString2: "Loading...",
     };
   }
+//Might need to make this await the prop promise?
   async rsvp() {
   console.log(demoString.split(/[\s]+/));
-  console.log(JSON.stringify(this.props).replace("\n", " ").split(/[\s]+/));
-   let splitStringArray = demoString.split(/[\s]+/);
+  console.log(JSON.stringify(this.props));
+  console.log(JSON.stringify(this.props).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/));
+   //let splitStringArray = demoString.split(/[\s]+/);
+   let splitStringArray = JSON.stringify(this.props).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/);
 //     Alert.alert(
 //      'splitStringArray',
 //      'Results: ' + splitStringArray);
