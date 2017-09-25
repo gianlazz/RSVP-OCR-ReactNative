@@ -35,10 +35,31 @@ have to run right away for the render
   constructor(props){
     super(props);
     this.state = {
-      rsvpDisplay: "Placeholder",
-      ocrString2: "Loading...",
+      rsvpDisplay: "Loading",
+      continueLoading: true,
+      rsvpColor: '#E74C3C',
+
     };
   }
+
+  async componentDidMount() {
+    //this needs to loop while continueLoading: true
+    //then once the prop is recieved that state boolean needs
+    //to be set as false.
+
+    //I could do this as a for loop and push "." to the end each time
+           this.setState({rsvpColor: '#E74C3C'});
+           this.setState({rsvpDisplay: "Loading"});
+           await new Promise(r => setTimeout(r, 1000));
+           this.setState({rsvpDisplay: "Loading."});
+           await new Promise(r => setTimeout(r, 1000));
+           this.setState({rsvpDisplay: "Loading.."});
+           await new Promise(r => setTimeout(r, 1000));
+           this.setState({rsvpDisplay: "Loading..."});
+//    let splitStringArray = JSON.stringify(this.props).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/);
+//    this.setState({rsvpDisplay: splitStringArray[0]});
+  }
+
 //Might need to make this await the prop promise?
   async rsvp() {
   console.log(demoString.split(/[\s]+/));
@@ -82,6 +103,7 @@ have to run right away for the render
           <View style={[styles.boxContainer, styles.boxTwo]}>
             <TouchableOpacity
               onPress={this.rsvp.bind(this)}>
+              <Text style={[styles.rsvp, {color: this.state.rsvpColor}]}>{this.state.rsvpDisplay}</Text>
             </TouchableOpacity>
           </View>
 
@@ -143,10 +165,9 @@ const styles = StyleSheet.create({
       //flex: 2,
       //flex-grow: 1;
     textAlign: 'center',
-    color: '#4A90E2',
+//    color: '#4A90E2',
     fontSize: 30,
     fontFamily: 'futura',
-
   },
 
   slider: {
