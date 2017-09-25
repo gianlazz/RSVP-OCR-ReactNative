@@ -82,7 +82,6 @@ have to run right away for the render
           <View style={[styles.boxContainer, styles.boxTwo]}>
             <TouchableOpacity
               onPress={this.rsvp.bind(this)}>
-              <Text style={styles.rsvp}>{this.state.rsvpDisplay}</Text>
             </TouchableOpacity>
           </View>
 
