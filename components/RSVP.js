@@ -53,9 +53,9 @@ have to run right away for the render
      console.log("First word in the array: " + splitStringArray[index])
      console.log("Number of index: " + splitStringArray.length)
    while (index < splitStringArray.length){
-     console.log(index)
+     //console.log(index)
     rsvpString = splitStringArray[index]
-     console.log(rsvpString)
+     //console.log(rsvpString)
      //Set the state right here:
      this.setState({rsvpDisplay: rsvpString});
     await new Promise(r => setTimeout(r, 150));
@@ -70,7 +70,7 @@ have to run right away for the render
           <View style={[styles.boxContainer, styles.boxOne]}>
             <MonoText style={styles.pauseText}>Tap on the words to play</MonoText>
           </View>
-
+{/*
           <View style={[styles.boxContainer, styles.boxTwo]}>
             <TouchableOpacity
               onPress={this.rsvp.bind(this)}>
@@ -78,7 +78,7 @@ have to run right away for the render
                 {...this.props} />
             </TouchableOpacity>
           </View>
-
+*/}
           <View style={[styles.boxContainer, styles.boxTwo]}>
             <TouchableOpacity
               onPress={this.rsvp.bind(this)}>
