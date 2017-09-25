@@ -102,9 +102,9 @@ this.refs.modal1.open()
           console.log(textContent);
           this.setState({ocrString: textContent});
 
-                    Alert.alert(
-                     'Google Cloud Vision',
-                     'Text Results: ' + textContent);
+//                    Alert.alert(
+//                     'Google Cloud Vision',
+//                     'Text Results: ' + textContent);
 
         }.bind(this))
         .catch(function (error) {
