@@ -102,16 +102,17 @@ have to run right away for the render
     //console.log("First word in the array: " + splitStringArray[index])
     //console.log("Number of index: " + splitStringArray.length)
     this.setState({rsvpContinueIncrementing: !this.state.rsvpContinueIncrementing})
+    console.log(this.state.rsvpIndex)
+    console.log(this.state.rsvpContinueIncrementing)
 
          while (this.state.rsvpIndex < words.length && this.state.rsvpContinueIncrementing == true){
                this.setState({rsvpNote: "Tap on the words to stop"});
                this.setState({rsvpIsIncrementing: true});
-               console.log(this.state.rsvpIndex)
-               console.log(this.state.rsvpContinueIncrementing)
+
                rsvpString = words[this.state.rsvpIndex]
                this.setState({rsvpDisplay: rsvpString});
                await new Promise(r => setTimeout(r, 150));
-               this.setState.rsvpIndex = this.state.rsvpIndex + 1;
+               this.setState({rsvpIndex: this.state.rsvpIndex + 1})
          }
  }
 
