@@ -41,6 +41,7 @@ export default class HomeScreen extends React.Component {
       swipeToClose: true,
       sliderValue: 0.3,
       ocrString: "ocrString",
+      ocrArray: [],
     };
   }
 
@@ -100,6 +101,7 @@ this.refs.modal1.open()
           textContent = textAnnotations.description;
 
           console.log(textContent);
+          this.setState({ocrArray: response.data.responses[0].textAnnotations.slice(1).map(w => w.description)})
           this.setState({ocrString: textContent});
 
 //                    Alert.alert(
