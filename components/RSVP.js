@@ -38,7 +38,10 @@ have to run right away for the render
       rsvpDisplay: "Loading",
       continueLoading: true,
       rsvpColor: '#E74C3C',
-
+      rsvpTouchDisable: true,
+      rsvpNote: "",
+      rsvpContinueIncrementing: false,
+      rsvpIsIncrementing: false,
     };
   }
 
@@ -49,6 +52,7 @@ have to run right away for the render
 
     //I could do this as a for loop and push "." to the end each time
            this.setState({rsvpColor: '#E74C3C'});
+           this.setState({rsvpTouchDisable: true});
     while(this.state.continueLoading === true) {
            if (this.state.continueLoading !== true) return;
            this.setState({rsvpDisplay: "Loading"});
@@ -75,42 +79,54 @@ have to run right away for the render
       this.setState({continueLoading: false});
       this.setState({rsvpDisplay: splitStringArray[0]});
       this.setState({rsvpColor: '#4A90E2'});
-      this.setState({rsvpIsTouchable: true});
+      this.setState({rsvpTouchDisable: false});
+      this.setState({rsvpNote: "Tap on the words to play"});
     }
   }
 
 //Might need to make this await the prop promise?
   async rsvp() {
-    console.log(demoString.split(/[\s]+/));
-    console.log(JSON.stringify(this.props));
-    console.log(JSON.stringify(this.props).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/));
-    let splitStringArray = JSON.stringify(this.props).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/);
+    //console.log(demoString.split(/[\s]+/));
+    //console.log(JSON.stringify(this.props));
+    //console.log(JSON.stringify(this.props).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/));
+    //let splitStringArray = JSON.stringify(this.props).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/);
+    const words = this.props.children.slice();
+    words.shift()
+    words.map(w => w.description)
 //     Alert.alert(
 //      'splitStringArray',
 //      'Results: ' + splitStringArray);
     let index = 0;
-    console.log("First word in the array: " + splitStringArray[index])
-    console.log("Number of index: " + splitStringArray.length)
-   while (index < splitStringArray.length){
-     //console.log(index)
-     rsvpString = splitStringArray[index]
-     //console.log(rsvpString)
-     //Set the state right here:
-     this.setState({rsvpDisplay: rsvpString});
-     await new Promise(r => setTimeout(r, 150));
-     index++
-   }
+    //console.log("First word in the array: " + splitStringArray[index])
+    //console.log("Number of index: " + splitStringArray.length)
+    this.setState({rsvpContinueIncrementing: !this.state.rsvpContinueIncrementing})
+
+         while (index < words.length){
+           if(this.state.rsvpContinueIncrementing == true) {
+               this.setState({rsvpNote: "Tap on the words to stop"});
+               this.setState({rsvpIsIncrementing: true});
+               //console.log(index)
+               rsvpString = words[index]
+               //console.log(rsvpString)
+               //Set the state right here:
+               this.setState({rsvpDisplay: rsvpString});
+
+               await new Promise(r => setTimeout(r, 150));
+               index++
+            } else {return;}
+         }
  }
 
   render() {
     return (
       <View style={styles.container}>
           <View style={[styles.boxContainer, styles.boxOne]}>
-            <MonoText style={styles.pauseText}>Tap on the words to play</MonoText>
+            <MonoText style={styles.pauseText}>{this.state.rsvpNote}</MonoText>
           </View>
           <View style={[styles.boxContainer, styles.boxTwo]}>
             <TouchableOpacity
-              onPress={this.rsvp.bind(this)}>
+              onPress={this.rsvp.bind(this)}
+              disabled={this.state.rsvpTouchDisable}>
               <Text style={[styles.rsvp, {color: this.state.rsvpColor}]}>{this.state.rsvpDisplay}</Text>
             </TouchableOpacity>
           </View>
