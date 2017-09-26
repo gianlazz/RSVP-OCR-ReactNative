@@ -75,7 +75,8 @@ have to run right away for the render
 
   componentWillReceiveProps(nextProps){
     if(nextProps !== this.props) {
-      let splitStringArray = JSON.stringify(nextProps).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/);
+      //let splitStringArray = JSON.stringify(nextProps).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/);
+      splitStringArray = nextProps.children;
       this.setState({continueLoading: false});
       this.setState({rsvpDisplay: splitStringArray[0]});
       this.setState({rsvpColor: '#4A90E2'});
@@ -90,10 +91,9 @@ have to run right away for the render
     //console.log(JSON.stringify(this.props));
     //console.log(JSON.stringify(this.props).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/));
     //let splitStringArray = JSON.stringify(this.props).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/);
-    let words = this.props.children.slice();
+    let words = splitStringArray
     console.log("This is the words variable: " + words);
-    words.shift()
-    words = words.map(w => w.description)
+
 //     Alert.alert(
 //      'splitStringArray',
 //      'Results: ' + splitStringArray);

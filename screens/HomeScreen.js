@@ -144,7 +144,7 @@ this.refs.modal1.open()
                     onOpened={this.onOpen}
                     onClosingState={this.onClosingState}>
 
-                  <RSVP>{this.state.ocrString}</RSVP>
+                  <RSVP>{this.state.ocrArray}</RSVP>
 
                 </Modal>
 
