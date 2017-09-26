@@ -42,6 +42,7 @@ have to run right away for the render
       rsvpNote: "",
       rsvpContinueIncrementing: false,
       rsvpIsIncrementing: false,
+      rsvpIndex: 0,
     };
   }
 
@@ -97,21 +98,21 @@ have to run right away for the render
 //     Alert.alert(
 //      'splitStringArray',
 //      'Results: ' + splitStringArray);
-    let index = 0;
+//    let index = 0;
     //console.log("First word in the array: " + splitStringArray[index])
     //console.log("Number of index: " + splitStringArray.length)
     this.setState({rsvpContinueIncrementing: !this.state.rsvpContinueIncrementing})
 
-         while (index < words.length && this.state.rsvpContinueIncrementing == true){
+         while (this.state.rsvpIndex < words.length && this.state.rsvpContinueIncrementing == true){
                this.setState({rsvpNote: "Tap on the words to stop"});
                this.setState({rsvpIsIncrementing: true});
                //console.log(index)
-               rsvpString = words[index]
+               rsvpString = words[this.state.rsvpIndex]
                //console.log(rsvpString)
                //Set the state right here:
                this.setState({rsvpDisplay: rsvpString});
                await new Promise(r => setTimeout(r, 150));
-               index++
+               this.state.rsvpIndex++
          }
  }
 
