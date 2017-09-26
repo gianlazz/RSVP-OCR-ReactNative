@@ -100,10 +100,10 @@ have to run right away for the render
     let index = 0;
     //console.log("First word in the array: " + splitStringArray[index])
     //console.log("Number of index: " + splitStringArray.length)
-    this.setState({rsvpContinueIncrementing: !this.state.rsvpContinueIncrementing})
+    //this.setState({rsvpContinueIncrementing: !this.state.rsvpContinueIncrementing})
 
          while (index < words.length){
-           if(this.state.rsvpContinueIncrementing == true) {
+           //if(this.state.rsvpContinueIncrementing == true) {
                this.setState({rsvpNote: "Tap on the words to stop"});
                this.setState({rsvpIsIncrementing: true});
                //console.log(index)
@@ -114,7 +114,7 @@ have to run right away for the render
 
                await new Promise(r => setTimeout(r, 150));
                index++
-            } else {return;}
+            //}
          }
  }
 
