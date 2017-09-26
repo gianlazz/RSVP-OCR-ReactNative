@@ -93,6 +93,7 @@ have to run right away for the render
     let words = this.props.children.slice();
     words.shift()
     words = words.map(w => w.description)
+    console.log("This is the words variable: " + words);
 //     Alert.alert(
 //      'splitStringArray',
 //      'Results: ' + splitStringArray);
