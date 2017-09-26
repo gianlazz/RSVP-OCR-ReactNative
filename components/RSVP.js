@@ -111,7 +111,7 @@ have to run right away for the render
                rsvpString = words[this.state.rsvpIndex]
                this.setState({rsvpDisplay: rsvpString});
                await new Promise(r => setTimeout(r, 150));
-               this.state.rsvpIndex++
+               this.setState.rsvpIndex = this.state.rsvpIndex + 1;
          }
  }
 
