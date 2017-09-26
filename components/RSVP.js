@@ -90,9 +90,9 @@ have to run right away for the render
     //console.log(JSON.stringify(this.props));
     //console.log(JSON.stringify(this.props).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/));
     //let splitStringArray = JSON.stringify(this.props).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/);
-    const words = this.props.children.slice();
+    let words = this.props.children.slice();
     words.shift()
-    words.map(w => w.description)
+    words = words.map(w => w.description)
 //     Alert.alert(
 //      'splitStringArray',
 //      'Results: ' + splitStringArray);
