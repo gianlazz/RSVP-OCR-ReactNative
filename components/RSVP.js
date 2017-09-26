@@ -106,10 +106,9 @@ have to run right away for the render
          while (this.state.rsvpIndex < words.length && this.state.rsvpContinueIncrementing == true){
                this.setState({rsvpNote: "Tap on the words to stop"});
                this.setState({rsvpIsIncrementing: true});
-               //console.log(index)
+               console.log(this.state.rsvpIndex)
+               console.log(this.state.rsvpContinueIncrementing)
                rsvpString = words[this.state.rsvpIndex]
-               //console.log(rsvpString)
-               //Set the state right here:
                this.setState({rsvpDisplay: rsvpString});
                await new Promise(r => setTimeout(r, 150));
                this.state.rsvpIndex++
