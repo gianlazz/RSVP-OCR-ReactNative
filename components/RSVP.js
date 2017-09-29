@@ -13,6 +13,7 @@ import { MonoText } from '../components/StyledText';
 
 var rsvpString;
 var demoString = "Angular is a TypeScript-based open-source front-end web application platform led by the Angular Team at Google and by a community of individuals and corporations to address all of the parts of the developer's workflow while building complex web applications. Angular is a complete rewrite from the same team that built AngularJS.";
+var rsvpContinueIncrementingVar;
 
 export class RSVP extends React.Component {
 /*
@@ -50,6 +51,8 @@ have to run right away for the render
     //this needs to loop while continueLoading: true
     //then once the prop is recieved that state boolean needs
     //to be set as false.
+
+    rsvpContinueIncrementingVar = false;
 
     //I could do this as a for loop and push "." to the end each time
            this.setState({rsvpColor: '#E74C3C'});
@@ -102,13 +105,15 @@ have to run right away for the render
     //console.log("First word in the array: " + splitStringArray[index])
     //console.log("Number of index: " + splitStringArray.length)
 
-    this.setState({rsvpContinueIncrementing: !this.state.rsvpContinueIncrementing})
+    rsvpContinueIncrementingVar = !rsvpContinueIncrementingVar;
+
+    //this.setState({rsvpContinueIncrementing: !this.state.rsvpContinueIncrementing})
     console.log(this.state.rsvpIndex)
     console.log(this.state.rsvpContinueIncrementing)
 
-                   await new Promise(r => setTimeout(r, 0));
+                   //await new Promise(r => setTimeout(r, 0));
 
-         while (this.state.rsvpIndex < words.length && this.state.rsvpContinueIncrementing == true){
+         while (this.state.rsvpIndex < words.length && rsvpContinueIncrementingVar == true){
                this.setState({rsvpNote: "Tap on the words to stop"});
                this.setState({rsvpIsIncrementing: true});
 
