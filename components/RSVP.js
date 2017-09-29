@@ -89,10 +89,12 @@ have to run right away for the render
     let words = splitStringArray
     rsvpContinueIncrementingVar = !rsvpContinueIncrementingVar;
          while (this.state.rsvpIndex < words.length && rsvpContinueIncrementingVar == true){
-               this.setState({rsvpNote: "Tap on the words to stop"});
-               this.setState({rsvpIsIncrementing: true});
                rsvpString = words[this.state.rsvpIndex]
-               this.setState({rsvpDisplay: rsvpString});
+               this.setState({
+                 rsvpNote: "Tap on the words to stop",
+                 rsvpIsIncrementing: true,
+                 rsvpDisplay: rsvpString
+               });
                await new Promise(r => setTimeout(r, 150));
                this.setState({rsvpIndex: this.state.rsvpIndex + 1})
          }
