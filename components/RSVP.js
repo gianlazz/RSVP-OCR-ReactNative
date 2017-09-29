@@ -48,12 +48,7 @@ have to run right away for the render
   }
 
   async componentDidMount() {
-    //this needs to loop while continueLoading: true
-    //then once the prop is recieved that state boolean needs
-    //to be set as false.
-
     rsvpContinueIncrementingVar = false;
-
     //I could do this as a for loop and push "." to the end each time
            this.setState({rsvpColor: '#E74C3C'});
            this.setState({rsvpTouchDisable: true});
@@ -79,7 +74,6 @@ have to run right away for the render
 
   componentWillReceiveProps(nextProps){
     if(nextProps !== this.props) {
-      //let splitStringArray = JSON.stringify(nextProps).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/);
       splitStringArray = nextProps.children;
       this.setState({
         continueLoading: false,
@@ -91,34 +85,12 @@ have to run right away for the render
     }
   }
 
-//Might need to make this await the prop promise?
   async rsvp() {
-    //console.log(demoString.split(/[\s]+/));
-    //console.log(JSON.stringify(this.props));
-    //console.log(JSON.stringify(this.props).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/));
-    //let splitStringArray = JSON.stringify(this.props).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/);
     let words = splitStringArray
-    console.log("This is the words variable: " + words);
-
-//     Alert.alert(
-//      'splitStringArray',
-//      'Results: ' + splitStringArray);
-//    let index = 0;
-    //console.log("First word in the array: " + splitStringArray[index])
-    //console.log("Number of index: " + splitStringArray.length)
-
     rsvpContinueIncrementingVar = !rsvpContinueIncrementingVar;
-
-    //this.setState({rsvpContinueIncrementing: !this.state.rsvpContinueIncrementing})
-    console.log(this.state.rsvpIndex)
-    console.log(this.state.rsvpContinueIncrementing)
-
-                   //await new Promise(r => setTimeout(r, 0));
-
          while (this.state.rsvpIndex < words.length && rsvpContinueIncrementingVar == true){
                this.setState({rsvpNote: "Tap on the words to stop"});
                this.setState({rsvpIsIncrementing: true});
-
                rsvpString = words[this.state.rsvpIndex]
                this.setState({rsvpDisplay: rsvpString});
                await new Promise(r => setTimeout(r, 150));
