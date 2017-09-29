@@ -120,6 +120,8 @@ have to run right away for the render
               thumbTintColor={'#4A90E2'}
               minimumTrackTintColor={'#4A90E2'}
               maximumTrackTintColor={'#4A90E2'}>
+              step={1}
+              value={this.state.rsvpIndex}
             </Slider>
           </View>
           <View style={[styles.wpmContainer, styles.boxContainer, styles.boxThree]}>
