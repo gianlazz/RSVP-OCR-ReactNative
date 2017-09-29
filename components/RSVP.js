@@ -81,11 +81,13 @@ have to run right away for the render
     if(nextProps !== this.props) {
       //let splitStringArray = JSON.stringify(nextProps).replace("\n" + "{\"children\":\"" , " ").split(/[\s]+/);
       splitStringArray = nextProps.children;
-      this.setState({continueLoading: false});
-      this.setState({rsvpDisplay: splitStringArray[0]});
-      this.setState({rsvpColor: '#4A90E2'});
-      this.setState({rsvpTouchDisable: false});
-      this.setState({rsvpNote: "Tap on the words to play"});
+      this.setState({
+        continueLoading: false,
+        rsvpDisplay: splitStringArray[0],
+        rsvpColor: '#4A90E2',
+        rsvpTouchDisable: false,
+        rsvpNote: "Tap on the words to play"
+      });
     }
   }
 
