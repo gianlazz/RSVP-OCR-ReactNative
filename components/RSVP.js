@@ -14,6 +14,7 @@ import { MonoText } from '../components/StyledText';
 var rsvpString;
 var demoString = "Angular is a TypeScript-based open-source front-end web application platform led by the Angular Team at Google and by a community of individuals and corporations to address all of the parts of the developer's workflow while building complex web applications. Angular is a complete rewrite from the same team that built AngularJS.";
 var rsvpContinueIncrementingVar;
+var words;
 
 export class RSVP extends React.Component {
 /*
@@ -28,7 +29,7 @@ all while being in red until the prop string is recieved
 and done being split. Then change back to blue as the first
 word in the split array waiting for the user to touch it.
 
-Set the rsvpDisplay to "First word in the array: " + splitStringArray[index]
+Set the rsvpDisplay to "First word in the array: " + words[index]
 that way it won't be blank when it first displayes. Though that will
 have to run right away for the render
 */
@@ -74,19 +75,19 @@ have to run right away for the render
 
   componentWillReceiveProps(nextProps){
     if(nextProps !== this.props) {
-      splitStringArray = nextProps.children;
+      words = nextProps.children;
       this.setState({
         continueLoading: false,
-        rsvpDisplay: splitStringArray[0],
+        rsvpDisplay: words[0],
         rsvpColor: '#4A90E2',
         rsvpTouchDisable: false,
-        rsvpNote: "Tap on the words to play"
+        rsvpNote: "Tap on the words to play",
+        arrayLength: words.length,
       });
     }
   }
 
   async rsvp() {
-    let words = splitStringArray
     rsvpContinueIncrementingVar = !rsvpContinueIncrementingVar;
          while (this.state.rsvpIndex < words.length && rsvpContinueIncrementingVar == true){
                rsvpString = words[this.state.rsvpIndex]
