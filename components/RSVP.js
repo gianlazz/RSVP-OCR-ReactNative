@@ -45,6 +45,7 @@ have to run right away for the render
       rsvpContinueIncrementing: false,
       rsvpIsIncrementing: false,
       rsvpIndex: 0,
+      arrayLength: 0,
     };
   }
 
@@ -122,6 +123,7 @@ have to run right away for the render
               maximumTrackTintColor={'#4A90E2'}>
               step={1}
               value={this.state.rsvpIndex}
+              maximumValue={this.state.arrayLength}
             </Slider>
           </View>
           <View style={[styles.wpmContainer, styles.boxContainer, styles.boxThree]}>
