@@ -43,7 +43,6 @@ have to run right away for the render
       rsvpTouchDisable: true,
       rsvpNote: "",
       rsvpContinueIncrementing: false,
-      rsvpIsIncrementing: false,
       rsvpIndex: 0,
       arrayLength: 0,
     };
@@ -94,7 +93,6 @@ have to run right away for the render
                rsvpString = words[this.state.rsvpIndex]
                this.setState({
                  rsvpNote: "Tap on the words to stop",
-                 rsvpIsIncrementing: true,
                  rsvpDisplay: rsvpString
                });
                await new Promise(r => setTimeout(r, 150));
