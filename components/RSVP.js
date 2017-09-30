@@ -11,7 +11,6 @@ import {
 
 import { MonoText } from '../components/StyledText';
 
-var rsvpString;
 var demoString = "Angular is a TypeScript-based open-source front-end web application platform led by the Angular Team at Google and by a community of individuals and corporations to address all of the parts of the developer's workflow while building complex web applications. Angular is a complete rewrite from the same team that built AngularJS.";
 var rsvpContinueIncrementingVar;
 var words;
@@ -90,10 +89,9 @@ have to run right away for the render
   async rsvp() {
     rsvpContinueIncrementingVar = !rsvpContinueIncrementingVar;
          while (this.state.rsvpIndex < words.length && rsvpContinueIncrementingVar == true){
-               rsvpString = words[this.state.rsvpIndex]
                this.setState({
                  rsvpNote: "Tap on the words to stop",
-                 rsvpDisplay: rsvpString
+                 rsvpDisplay: words[this.state.rsvpIndex]
                });
                await new Promise(r => setTimeout(r, 150));
                this.setState({rsvpIndex: this.state.rsvpIndex + 1})
