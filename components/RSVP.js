@@ -99,11 +99,13 @@ have to run right away for the render
       this.setState({rsvpNote: "Tap on the words to play"});
  }
 
-  sliderValueChange(){
-    rsvpContinueIncrementingVar == false;
+  sliderValueChange(val){
+    rsvpContinueIncrementingVar = false;
     this.setState({
-      rsvpDisplay: this.state.rsvpIndex,
+      rsvpIndex: val,
+      rsvpDisplay: words[this.state.rsvpIndex],
       rsvpTouchDisable: true,
+      rsvpNote: "Tap on the words to play"
     })
   }
 
@@ -134,7 +136,8 @@ have to run right away for the render
               step={1}
               value={this.state.rsvpIndex}
               maximumValue={this.state.arrayLength}
-              onValueChange={val => this.setState({ rsvpIndex: val, rsvpDisplay: words[this.state.rsvpIndex]})}>
+              onValueChange={val => this.sliderValueChange(val)}
+              onSlidingComplete={this.slidingComplete.bind(this)}>
             </Slider>
           </View>
           <View style={[styles.wpmContainer, styles.boxContainer, styles.boxThree]}>
