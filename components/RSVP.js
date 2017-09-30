@@ -99,6 +99,20 @@ have to run right away for the render
       this.setState({rsvpNote: "Tap on the words to play"});
  }
 
+  sliderValueChange(){
+    rsvpContinueIncrementingVar == false;
+    this.setState({
+      rsvpDisplay: this.state.rsvpIndex,
+      rsvpTouchDisable: true,
+    })
+  }
+
+  slidingComplete(){
+    this.setState({
+      rsvpTouchDisable: false,
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -116,10 +130,11 @@ have to run right away for the render
             <Slider
               thumbTintColor={'#4A90E2'}
               minimumTrackTintColor={'#4A90E2'}
-              maximumTrackTintColor={'#4A90E2'}>
+              maximumTrackTintColor={'#4A90E2'}
               step={1}
               value={this.state.rsvpIndex}
               maximumValue={this.state.arrayLength}
+              onValueChange={val => this.setState({ rsvpIndex: val, rsvpDisplay: words[this.state.rsvpIndex]})}>
             </Slider>
           </View>
           <View style={[styles.wpmContainer, styles.boxContainer, styles.boxThree]}>
