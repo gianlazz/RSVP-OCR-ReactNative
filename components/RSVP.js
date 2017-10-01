@@ -131,7 +131,7 @@ have to run right away for the render
             </TouchableOpacity>
           </View>
 
-          <View style={styles.boxTwo}>
+          <View style={[styles.boxContainer, styles.boxThree]}>
             <Slider
               thumbTintColor={'#4A90E2'}
               minimumTrackTintColor={'#4A90E2'}
@@ -144,10 +144,12 @@ have to run right away for the render
             </Slider>
           </View>
 
-          <View style={[styles.wpmContainer, styles.boxContainer, styles.boxThree]}>
-              <MonoText style={styles.wpm}>WPM 300</MonoText>
+          <View style={[styles.boxContainer, styles.boxFour]}>
+            <Button title={"-"}/>
+              <MonoText style={[styles.wpm, styles.wpmContainer]}>WPM 300</MonoText>
+            <Button title={"+"}/>
           </View>
-          
+
       </View>
     );
   }
@@ -157,34 +159,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    paddingTop: 0,
-    backgroundColor: '#FFEEE4',
   },
   boxContainer: {
-    flex: 1,
-    alignItems: 'center',
+    //flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#F17F42'
   },
 //BOX ONE
     boxOne: {
-      //backgroundColor: '#FFEEE4',
+      flex: 1,
+      alignItems: 'center',
     },
     pauseText: {
-      //flex: 1,
-      //textAlign: 'center',
       color: '#9B9B9B',
       textDecorationLine: 'underline',
-      //fontSize: 6,
-      //font-family: Futura_Medium;
     },
 //BOX TWO
     boxTwo: {
-      //backgroundColor: '#F17F42'
+      flex: 4,
+      alignItems: 'center',
     },
     rsvp: {
-        //flex: 2,
-        //flex-grow: 1;
       textAlign: 'center',
       //color: '#4A90E2',
       fontSize: 30,
@@ -192,32 +186,30 @@ const styles = StyleSheet.create({
     },
 //BOX THREE
     boxThree: {
-      //backgroundColor: '#CE6D39',
+      flex: 1,
     },
     slider: {
-      //flex: 3;
-      //flex-grow: 1;
     },
 //BOX FOUR
     boxFour: {
-
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'space-around'
     },
     wpmContainer: {
-      //flex: 4,
-      bottom: 0,
-      borderStyle: 'solid',
-      borderWidth: 2,
-      borderColor: '#9B9B9B',
-      marginTop: 20,
-      marginLeft: 130,
-      marginRight: 130,
-      marginBottom: 20,
+      //bottom: 0,
+      //borderStyle: 'solid',
+      //borderWidth: 2,
+      //borderColor: '#9B9B9B',
+      //marginTop: 20,
+      //marginLeft: 130,
+      //marginRight: 130,
+      //marginBottom: 20,
     },
     wpm: {
       fontWeight: 'bold',
       //font-size: 3vw;
       textAlign: 'center',
       color: '#9B9B9B',
-      //font-family: Futura_Medium;
     },
 });
