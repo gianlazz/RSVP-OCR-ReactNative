@@ -118,9 +118,11 @@ have to run right away for the render
   render() {
     return (
       <View style={styles.container}>
+
           <View style={[styles.boxContainer, styles.boxOne]}>
             <MonoText style={styles.pauseText}>{this.state.rsvpNote}</MonoText>
           </View>
+
           <View style={[styles.boxContainer, styles.boxTwo]}>
             <TouchableOpacity
               onPress={this.rsvp.bind(this)}
@@ -128,6 +130,7 @@ have to run right away for the render
               <Text style={[styles.rsvp, {color: this.state.rsvpColor}]}>{this.state.rsvpDisplay}</Text>
             </TouchableOpacity>
           </View>
+
           <View style={styles.boxTwo}>
             <Slider
               thumbTintColor={'#4A90E2'}
@@ -140,9 +143,11 @@ have to run right away for the render
               onSlidingComplete={this.slidingComplete.bind(this)}>
             </Slider>
           </View>
+
           <View style={[styles.wpmContainer, styles.boxContainer, styles.boxThree]}>
               <MonoText style={styles.wpm}>WPM 300</MonoText>
           </View>
+          
       </View>
     );
   }
@@ -152,59 +157,67 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    paddingTop: 15,
-    backgroundColor: '#fff',
+    paddingTop: 0,
+    backgroundColor: '#FFEEE4',
   },
   boxContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#F17F42'
   },
-  boxOne: {
-    //backgroundColor: '#FFEEE4',
-  },
-  boxTwo: {
-    //backgroundColor: '#F17F42'
-  },
-  boxThree: {
-    //backgroundColor: '#CE6D39',
-  },
-  pauseText: {
-    //flex: 1,
-    //textAlign: 'center',
-    color: '#9B9B9B',
-    textDecorationLine: 'underline',
-    //fontSize: 6,
-    //font-family: Futura_Medium;
-  },
-  rsvp: {
-      //flex: 2,
+//BOX ONE
+    boxOne: {
+      //backgroundColor: '#FFEEE4',
+    },
+    pauseText: {
+      //flex: 1,
+      //textAlign: 'center',
+      color: '#9B9B9B',
+      textDecorationLine: 'underline',
+      //fontSize: 6,
+      //font-family: Futura_Medium;
+    },
+//BOX TWO
+    boxTwo: {
+      //backgroundColor: '#F17F42'
+    },
+    rsvp: {
+        //flex: 2,
+        //flex-grow: 1;
+      textAlign: 'center',
+      //color: '#4A90E2',
+      fontSize: 30,
+      fontFamily: 'futura',
+    },
+//BOX THREE
+    boxThree: {
+      //backgroundColor: '#CE6D39',
+    },
+    slider: {
+      //flex: 3;
       //flex-grow: 1;
-    textAlign: 'center',
-//    color: '#4A90E2',
-    fontSize: 30,
-    fontFamily: 'futura',
-  },
-  slider: {
-    //flex: 3;
-    //flex-grow: 1;
-  },
-  wpmContainer: {
-    //flex: 4,
-    bottom: 0,
-    borderStyle: 'solid',
-    borderWidth: 2,
-    borderColor: '#9B9B9B',
-    marginTop: 20,
-    marginLeft: 130,
-    marginRight: 130,
-    marginBottom: 20,
-  },
-  wpm: {
-    fontWeight: 'bold',
-    //font-size: 3vw;
-    textAlign: 'center',
-    color: '#9B9B9B',
-    //font-family: Futura_Medium;
-  },
+    },
+//BOX FOUR
+    boxFour: {
+
+    },
+    wpmContainer: {
+      //flex: 4,
+      bottom: 0,
+      borderStyle: 'solid',
+      borderWidth: 2,
+      borderColor: '#9B9B9B',
+      marginTop: 20,
+      marginLeft: 130,
+      marginRight: 130,
+      marginBottom: 20,
+    },
+    wpm: {
+      fontWeight: 'bold',
+      //font-size: 3vw;
+      textAlign: 'center',
+      color: '#9B9B9B',
+      //font-family: Futura_Medium;
+    },
 });
