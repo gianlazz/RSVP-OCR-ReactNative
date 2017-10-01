@@ -161,12 +161,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   boxContainer: {
-    //flex: 1,
+    flex: 1,
     justifyContent: 'center',
   },
 //BOX ONE
     boxOne: {
-      flex: 1,
+      flex: 2,
       alignItems: 'center',
     },
     pauseText: {
@@ -187,14 +187,16 @@ const styles = StyleSheet.create({
 //BOX THREE
     boxThree: {
       flex: 1,
+      width: 300,
     },
     slider: {
     },
 //BOX FOUR
     boxFour: {
-      flex: 1,
+      flex: 1.5,
       flexDirection: 'row',
-      justifyContent: 'space-around'
+      justifyContent: 'space-around',
+      alignItems: 'center',
     },
     wpmContainer: {
       //bottom: 0,
@@ -209,6 +211,7 @@ const styles = StyleSheet.create({
     wpm: {
       fontWeight: 'bold',
       //font-size: 3vw;
+      fontSize: 18,
       textAlign: 'center',
       color: '#9B9B9B',
     },
