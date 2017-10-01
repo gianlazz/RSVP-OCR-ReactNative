@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     rsvp: {
       textAlign: 'center',
       //color: '#4A90E2',
-      fontSize: 30,
+      fontSize: 40,
       fontFamily: 'futura',
     },
 //BOX THREE
