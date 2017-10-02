@@ -14,6 +14,7 @@ import { MonoText } from '../components/StyledText';
 var demoString = "Angular is a TypeScript-based open-source front-end web application platform led by the Angular Team at Google and by a community of individuals and corporations to address all of the parts of the developer's workflow while building complex web applications. Angular is a complete rewrite from the same team that built AngularJS.";
 var rsvpContinueIncrementingVar;
 var words;
+var wordsPerMinute;
 
 export class RSVP extends React.Component {
 /*
@@ -98,6 +99,27 @@ have to run right away for the render
          }
       this.setState({rsvpNote: "Tap on the words to play"});
  }
+
+  wpmUp(){
+
+  }
+
+  wpmDown(){
+    
+  }
+
+  wpmCalculator(){
+    //if parameter plus then calculate +25 wpm as a milisecond value representation
+
+    //write the calculation
+    //1 wpm would be setting the timeout to 60,000
+    //60 wpm would be setting the timout to 1,000
+    //120 would be 500
+    //240 would be 250
+    //480 would be 125
+    //480/125 = 3.84
+    //960 would be 62.5
+  }
 
   sliderValueChange(val){
     rsvpContinueIncrementingVar = false;
