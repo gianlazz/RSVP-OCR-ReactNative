@@ -1,10 +1,12 @@
-node_modules/**/*
-.expo/**/*
+# Node
+**/node_modules/**/*
+**/npm-debug.log
 
-android/app/\.DS_Store
+# Expo
+**/.expo/**/*
 
-android/app/src/\.DS_Store
-
-android/app/src/main/\.DS_Store
-
-\.DS_Store
+# React Native Android Directories
+**/android/app/\.DS_Store
+**/android/app/src/\.DS_Store
+**/android/app/src/main/\.DS_Store
+**\.DS_Store
