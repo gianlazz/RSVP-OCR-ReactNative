@@ -10,10 +10,14 @@ class RsvpOcrCore
 {
     static OCR(data:string, base64:boolean )
     {
-        var clientOcr = new ClientSideOcr();
         // Accept image directory string or base64 encoded image string
+        if (base64 != true)
+        {
+            var imgDirectory = data;
         // If it's an image directory 
         //     Then encode it as base64
+               var encodedImage = Base64Encoder.EncodeToBase64(imgDirectory);
+        }
         // Perform Optical Character Recognition
         // Parse the JSON result from OCR
         // If the resulting JSON OCR result string object contains a URL
