@@ -4,10 +4,13 @@
 // Gian Lazzarini
 // 01.22.18
 
+//import { ClientSideOcr } from "./Services/ClientSideOcr";
+
 class RsvpOcrCore 
 {
     static OCR(data:string, base64:boolean )
     {
+        var clientOcr = new ClientSideOcr();
         // Accept image directory string or base64 encoded image string
         // If it's an image directory 
         //     Then encode it as base64
