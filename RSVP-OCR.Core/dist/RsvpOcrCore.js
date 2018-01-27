@@ -10,9 +10,17 @@ var RsvpOcrCore = /** @class */ (function () {
     }
     RsvpOcrCore.OCR = function (data, base64) {
         // Accept image directory string or base64 encoded image string
-        // If it's an image directory 
-        //     Then encode it as base64
+        if (base64 != true) {
+            var imgDirectory = data;
+            // If it's an image directory 
+            //     Then encode it as base64
+            var encodedImage = Base64Encoder.EncodeToBase64(imgDirectory);
+        }
+        // Given the current connectivity and execution enviroment choose between OCR engine options
+        // If connectivity and finances available
+        //CloudOcr
         // Perform Optical Character Recognition
+        // If 
         // Parse the JSON result from OCR
         // If the resulting JSON OCR result string object contains a URL
         //     Then see if the url is valid

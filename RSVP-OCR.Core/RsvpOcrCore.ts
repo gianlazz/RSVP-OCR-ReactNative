@@ -8,24 +8,43 @@
 
 class RsvpOcrCore 
 {
-    static OCR(data:string, base64:boolean )
+    static CheckConnectivity(): boolean
+    {
+        return true;
+    }
+
+    static OCR( data:string, isBase64:boolean ) // Should return resulting object?
+    // Should most of this classes members be overloaded implementations of this routine?
     {
         // Accept image directory string or base64 encoded image string
-        if (base64 != true)
+        if (isBase64 != true)
         {
-            var imgDirectory = data;
         // If it's an image directory 
-        //     Then encode it as base64
-               var encodedImage = Base64Encoder.EncodeToBase64(imgDirectory);
+        // Then encode it as base64
+            var data = Base64Encoder.EncodeToBase64(data);
         }
-        // Perform Optical Character Recognition
-        // Parse the JSON result from OCR
-        // If the resulting JSON OCR result string object contains a URL
-        //     Then see if the url is valid
-        //     Optionally verify with user that the URL is the one that they want
-        //     If the user selects a found URL
-        //         Pull the primary reading text of that page, stripped of adds or bullshit
+        // Given the current connectivity and execution enviroment choose between OCR engine options
+        // If connectivity and finances available
+        if (this.CheckConnectivity())
+        {
+        // perform OCR through the cloud
+            var OcrResult = CloudOcr.Parse(data);
+        } else
+        {    
+        // perform most performant available option for clientside OCR
+            var OcrResult = ClientSideOcr.Parse(data); 
+        }
+        // If the resulting JSON OCR result string object contains a URL    
+        if (OcrResult.ContainsUrl) 
+        {
+        // Ping the URL(s) to see if its valid
+        //     
+        // Optionally verify with user which URL they want?
+        // 
+        // If the user selects a URL Pull the primary reading text of that page, stripped of adds or bullshit
+        //
         // Return the final string to be visualized
+        }    
     }
 
     static RsvpParse(textToParse: string)

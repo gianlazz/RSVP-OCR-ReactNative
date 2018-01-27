@@ -1,16 +1,16 @@
-import axios from 'axios';
+// import axios from 'axios';
 
-// Google Cloud Vision API KEYS
-const cloudVisionKey = 'AIzaSyADh2eyiZCxc4g1IMjc0PjQFudxKlFW3-s';
-// Endpoints
-const cloudVision = 'https://vision.googleapis.com/v1/images:annotate?key=' + cloudVisionKey;
-var textContent:string;
-var ocrArray:Array<String>;
-var ocrString:string;
+// // Google Cloud Vision API KEYS
+// const cloudVisionKey = 'AIzaSyADh2eyiZCxc4g1IMjc0PjQFudxKlFW3-s';
+// // Endpoints
+// const cloudVision = 'https://vision.googleapis.com/v1/images:annotate?key=' + cloudVisionKey;
+// var textContent:string;
+// var ocrArray:Array<String>;
+// var ocrString:string;
 
 class CloudOcr
 {
-        static AxiosCloudVision()
+        static AxiosCloudVision(imgDirectory:string): string
         {
                 // axios.post(cloudVision, {
                 //         requests: 
@@ -26,6 +26,7 @@ class CloudOcr
                 //         }]
                 //     }).then(function (response) {
                 //     console.log(response);
+                //         Parse the JSON result from OCR
                 //         var textAnnotations = response.data.responses[0].textAnnotations[0];
                 //         var textContent = textAnnotations.description;
                 //         textContent
@@ -35,5 +36,11 @@ class CloudOcr
                 //             }.bind(this)).catch(function (error) {
                 //                 console.log(error, 'error');
                 //             }).catch(err => console.error(err));
+                return "";
+        }
+
+        static Parse(resultingBase64: string)
+        {
+                return "";
         }
 }
