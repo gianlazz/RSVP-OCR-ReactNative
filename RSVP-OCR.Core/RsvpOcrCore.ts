@@ -16,6 +16,7 @@ class RsvpOcrCore
     static OCR( data:string, isBase64:boolean ) // Should return resulting object?
     // Should most of this classes members be overloaded implementations of this routine?
     {
+        var isBase64:boolean = Base64Encoder.CheckForBase64(); // Returns boolean
         // Accept image directory string or base64 encoded image string
         if (isBase64 != true)
         {
