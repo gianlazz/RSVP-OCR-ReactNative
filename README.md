@@ -1,4 +1,13 @@
 # React-Native-OCR-Speed-Read
+
+### Build Process & Architecture
+npm install ~/yourdirectory/RSVP-OCR.Core
+
+# DevOps
+
+### Continous Integration
+
+### Unit Tests
 Uses native client side tesseract OCR and then does Rapid Serial Visual Presentation of the results.
 
  -The Future Of This Project:		
