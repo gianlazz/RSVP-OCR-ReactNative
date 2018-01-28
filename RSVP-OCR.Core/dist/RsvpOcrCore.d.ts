@@ -1,4 +1,5 @@
 declare class RsvpOcrCore {
-    static OCR(data: string, base64: boolean): void;
+    static CheckConnectivity(): boolean;
+    static OCR(data: string): string;
     static RsvpParse(textToParse: string): void;
 }

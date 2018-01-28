@@ -11,5 +11,15 @@ var Base64Encoder = /** @class */ (function () {
     Base64Encoder.EncodeToBase64 = function (imgDirectory) {
         return "";
     };
+    Base64Encoder.IsValidBase64 = function (data) {
+        // if(data == "contains Base64: or what ever the suffix is")
+        // {
+        //     return true;
+        // } else
+        // {
+        //     return false;
+        // }
+        return true;
+    };
     return Base64Encoder;
 }());

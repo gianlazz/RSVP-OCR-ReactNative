@@ -13,10 +13,10 @@ class RsvpOcrCore
         return true;
     }
 
-    static OCR( data:string, isBase64:boolean ) // Should return resulting object?
+    static OCR( data:string): string // Should return resulting object?
     // Should most of this classes members be overloaded implementations of this routine?
     {
-        var isBase64:boolean = Base64Encoder.CheckForBase64(); // Returns boolean
+        var isBase64:boolean = Base64Encoder.IsValidBase64(data); // Returns boolean
         // Accept image directory string or base64 encoded image string
         if (isBase64 != true)
         {
@@ -36,8 +36,8 @@ class RsvpOcrCore
             var OcrResult = ClientSideOcr.Parse(data); 
         }
         // If the resulting JSON OCR result string object contains a URL    
-        if (OcrResult.ContainsUrl) 
-        {
+        //if (OcrResult.ContainsUrl) 
+        //{
         // Ping the URL(s) to see if its valid
         //     
         // Optionally verify with user which URL they want?
@@ -45,7 +45,8 @@ class RsvpOcrCore
         // If the user selects a URL Pull the primary reading text of that page, stripped of adds or bullshit
         //
         // Return the final string to be visualized
-        }    
+        //}
+        return "Resulting string of text pulled from the image"
     }
 
     static RsvpParse(textToParse: string)
@@ -57,4 +58,4 @@ class RsvpOcrCore
         }
     }
 }
-RsvpOcrCore.RsvpParse("Hi This Is My First Test");
+//RsvpOcrCore.RsvpParse("Hi This Is My First Test");

@@ -8,26 +8,39 @@
 var RsvpOcrCore = /** @class */ (function () {
     function RsvpOcrCore() {
     }
-    RsvpOcrCore.OCR = function (data, base64) {
+    RsvpOcrCore.CheckConnectivity = function () {
+        return true;
+    };
+    RsvpOcrCore.OCR = function (data) {
+        var isBase64 = Base64Encoder.IsValidBase64(data); // Returns boolean
         // Accept image directory string or base64 encoded image string
-        if (base64 != true) {
-            var imgDirectory = data;
+        if (isBase64 != true) {
             // If it's an image directory 
-            //     Then encode it as base64
-            var encodedImage = Base64Encoder.EncodeToBase64(imgDirectory);
+            // Then encode it as base64
+            var data = Base64Encoder.EncodeToBase64(data);
         }
         // Given the current connectivity and execution enviroment choose between OCR engine options
         // If connectivity and finances available
-        //CloudOcr
-        // Perform Optical Character Recognition
-        // If 
-        // Parse the JSON result from OCR
-        // If the resulting JSON OCR result string object contains a URL
-        //     Then see if the url is valid
-        //     Optionally verify with user that the URL is the one that they want
-        //     If the user selects a found URL
-        //         Pull the primary reading text of that page, stripped of adds or bullshit
+        if (this.CheckConnectivity()) {
+            // perform OCR through the cloud
+            var OcrResult = CloudOcr.Parse(data);
+        }
+        else {
+            // perform most performant available option for clientside OCR
+            var OcrResult = ClientSideOcr.Parse(data);
+        }
+        // If the resulting JSON OCR result string object contains a URL    
+        //if (OcrResult.ContainsUrl) 
+        //{
+        // Ping the URL(s) to see if its valid
+        //     
+        // Optionally verify with user which URL they want?
+        // 
+        // If the user selects a URL Pull the primary reading text of that page, stripped of adds or bullshit
+        //
         // Return the final string to be visualized
+        //}
+        return "Resulting string of text pulled from the image";
     };
     RsvpOcrCore.RsvpParse = function (textToParse) {
         var SplitString = textToParse.split(" ");
@@ -38,4 +51,4 @@ var RsvpOcrCore = /** @class */ (function () {
     };
     return RsvpOcrCore;
 }());
-RsvpOcrCore.RsvpParse("Hi This Is My First Test");
+//RsvpOcrCore.RsvpParse("Hi This Is My First Test"); 

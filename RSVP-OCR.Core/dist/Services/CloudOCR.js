@@ -1,16 +1,16 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-// Google Cloud Vision API KEYS
-var cloudVisionKey = 'AIzaSyADh2eyiZCxc4g1IMjc0PjQFudxKlFW3-s';
-// Endpoints
-var cloudVision = 'https://vision.googleapis.com/v1/images:annotate?key=' + cloudVisionKey;
-var textContent;
-var ocrArray;
-var ocrString;
+// import axios from 'axios';
+// // Google Cloud Vision API KEYS
+// const cloudVisionKey = 'AIzaSyADh2eyiZCxc4g1IMjc0PjQFudxKlFW3-s';
+// // Endpoints
+// const cloudVision = 'https://vision.googleapis.com/v1/images:annotate?key=' + cloudVisionKey;
+// var textContent:string;
+// var ocrArray:Array<String>;
+// var ocrString:string;
 var CloudOcr = /** @class */ (function () {
     function CloudOcr() {
     }
-    CloudOcr.AxiosCloudVision = function () {
+    CloudOcr.AxiosCloudVision = function (imgDirectory) {
         // axios.post(cloudVision, {
         //         requests: 
         //         [{
@@ -25,6 +25,7 @@ var CloudOcr = /** @class */ (function () {
         //         }]
         //     }).then(function (response) {
         //     console.log(response);
+        //         Parse the JSON result from OCR
         //         var textAnnotations = response.data.responses[0].textAnnotations[0];
         //         var textContent = textAnnotations.description;
         //         textContent
@@ -34,6 +35,10 @@ var CloudOcr = /** @class */ (function () {
         //             }.bind(this)).catch(function (error) {
         //                 console.log(error, 'error');
         //             }).catch(err => console.error(err));
+        return "";
+    };
+    CloudOcr.Parse = function (resultingBase64) {
+        return "";
     };
     return CloudOcr;
 }());

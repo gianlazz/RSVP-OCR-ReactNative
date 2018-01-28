@@ -11,4 +11,16 @@ class Base64Encoder
     {
         return "";
     }
+    
+    static IsValidBase64(data: string): boolean
+    {
+        // if(data == "contains Base64: or what ever the suffix is")
+        // {
+        //     return true;
+        // } else
+        // {
+        //     return false;
+        // }
+        return true;
+    }
 }
