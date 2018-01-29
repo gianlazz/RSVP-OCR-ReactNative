@@ -1,5 +1,3 @@
-export default class RsvpOcrCore {
-    static CheckConnectivity(): boolean;
-    OCR(data: string): number;
-    static RsvpParse(textToParse: string): void;
-}
+export declare function CheckConnectivity(): boolean;
+export declare function OCR(data: string): number;
+export declare function RsvpParse(textToParse: string): void;
