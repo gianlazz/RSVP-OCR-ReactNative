@@ -1,5 +1,5 @@
-declare class RsvpOcrCore {
+export default class RsvpOcrCore {
     static CheckConnectivity(): boolean;
-    static OCR(data: string): string;
+    OCR(data: string): number;
     static RsvpParse(textToParse: string): void;
 }

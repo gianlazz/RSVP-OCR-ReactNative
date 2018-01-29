@@ -6,47 +6,47 @@
 
 //import { ClientSideOcr } from "./Services/ClientSideOcr";
 
-class RsvpOcrCore 
+export default class RsvpOcrCore 
 {
     static CheckConnectivity(): boolean
     {
         return true;
     }
 
-    static OCR( data:string): string // Should return resulting object?
+    public OCR( data:string): number // Should return resulting object?
     // Should most of this classes members be overloaded implementations of this routine?
     {
-        var isBase64:boolean = Base64Encoder.IsValidBase64(data); // Returns boolean
+        // var isBase64:boolean = Base64Encoder.IsValidBase64(data); // Returns boolean
         // Accept image directory string or base64 encoded image string
-        if (isBase64 != true)
-        {
+        // if (isBase64 != true)
+        // {
         // If it's an image directory 
         // Then encode it as base64
-            var data = Base64Encoder.EncodeToBase64(data);
-        }
+        //     var data = Base64Encoder.EncodeToBase64(data);
+        // }
         // Given the current connectivity and execution enviroment choose between OCR engine options
         // If connectivity and finances available
-        if (this.CheckConnectivity())
-        {
+        // if (CheckConnectivity())
+        // {
         // perform OCR through the cloud
-            var OcrResult = CloudOcr.Parse(data);
-        } else
-        {    
+        //     var OcrResult = CloudOcr.Parse(data);
+        // } else
+        // {    
         // perform most performant available option for clientside OCR
-            var OcrResult = ClientSideOcr.Parse(data); 
-        }
+        //     var OcrResult = ClientSideOcr.Parse(data); 
+        // }
         // If the resulting JSON OCR result string object contains a URL    
-        //if (OcrResult.ContainsUrl) 
-        //{
+        // if (OcrResult.ContainsUrl) 
+        // {
         // Ping the URL(s) to see if its valid
-        //     
+            
         // Optionally verify with user which URL they want?
-        // 
+        
         // If the user selects a URL Pull the primary reading text of that page, stripped of adds or bullshit
-        //
+        
         // Return the final string to be visualized
-        //}
-        return "Resulting string of text pulled from the image"
+        // }
+        return 3;
     }
 
     static RsvpParse(textToParse: string)
@@ -58,4 +58,4 @@ class RsvpOcrCore
         }
     }
 }
-//RsvpOcrCore.RsvpParse("Hi This Is My First Test");
+RsvpOcrCore.RsvpParse("Hi This Is My First Test");
