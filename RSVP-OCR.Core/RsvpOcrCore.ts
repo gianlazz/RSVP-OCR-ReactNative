@@ -11,23 +11,27 @@ import OfflineOcr = require("./Services/OfflineOcr");
 
 var result;
 
-// Should most of this classes members be overloaded implementations of this routine?
-export function Parse( data:string ): any
-{ // Accept image directory string or base64 encoded image string
+/* Accepts the following forms of input:
+ * 1. Local image directory string
+ * 2. Base64 encoded image string
+ * 3. URL Directory to an online image
+ * 4. URL directory to a webpage for which to pull the primary reading material
+ * 5. Any resulting image(s) containing valid URLS can then have the primary reading content pulled from said URL
+ *
+ * Returns:
+ * 1. Full parsed string of text 
+ * 2. Organization of paragraphs
+ * 3. X/Y coordinates for bounding box points around each word
+ * 4. (Optionally) all URLs found
+ * 5. (Optionally) URL Ping verification details
+ * 6. (Optionally) Invalid URL and autocorrection suggested URL
+ */
 
-    // Should probably be a case switch statement.
+// Should I just overload implementations of this routine?
+export function Parse( data:string ): any
+{ 
     if (Validator.IsValidBase64(data)) 
     {
-        // if (CheckConnectivity())
-        // {
-        // perform OCR through the cloud
-        //     var OcrResult = CloudOcr.Parse(data);
-        // } else
-        // {    
-        // perform most performant available option for clientside OCR
-        //     var OcrResult = ClientSideOcr.Parse(data); 
-        // }
-
         // Given the current connectivity and execution enviroment choose between OCR engine options
         // If connectivity and finances available
         result = (Web.IsConnected) ? CloudOcr.Parse(data) : OfflineOcr.Parse(data);
@@ -58,6 +62,12 @@ export function Parse( data:string ): any
     // JSON result including their x & y bounding box coordinates so that they could be
     // re-drawn.
 }
+
+/* Accepts the following forms of input:
+ *
+ * Returns:
+ * 
+ */
 
 export function RsvpParse(textToParse: string)
 {
