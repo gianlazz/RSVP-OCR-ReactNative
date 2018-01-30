@@ -9,7 +9,7 @@ import Web = require("./Services/Web");
 import CloudOcr = require("./Services/CloudOcr");
 import OfflineOcr = require("./Services/OfflineOcr");
 
-var result;
+var result:any;
 
 /* Accepts the following forms of input:
  * 1. Local image directory string
@@ -47,13 +47,14 @@ export function Parse( data:string ): any
         // Optionally if multiple URLS are found, verify with user which they want?
         // If the user selects a URL Pull the primary reading text of that page, stripped of adds or bullshit
         // Download it from the web then encode it as Base64.
-        var result = Validator.EncodeToBase64(data);
+        result = Validator.EncodeToBase64(data);
     }
     else if (Validator.IsValidUrl(data))
     {
-        var result = Web.Scraper(data);
+        result = Web.Scraper(data);
     }
 
+    return result;
     // If the resulting JSON OCR result string object contains a URL    
     // Return the final string(or whatever type of custom object) to be visualized
 
