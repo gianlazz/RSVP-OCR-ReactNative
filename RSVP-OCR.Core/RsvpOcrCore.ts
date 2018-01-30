@@ -5,23 +5,23 @@
 // 01.22.18
 
 //import { ClientSideOcr } from "./Services/ClientSideOcr";
+// Should most of this classes members be overloaded implementations of this routine?
 
 export function CheckConnectivity(): boolean
 {
     return true;
 }
 
-export function OCR( data:string): number // Should return resulting object?
-// Should most of this classes members be overloaded implementations of this routine?
+export function Parse( data:string ): number // Should return resulting object?
 {
     // var isBase64:boolean = Base64Encoder.IsValidBase64(data); // Returns boolean
     // Accept image directory string or base64 encoded image string
-    // if (isBase64 != true)
-    // {
+    if (isBase64 != true)
+    {
     // If it's an image directory 
     // Then encode it as base64
     //     var data = Base64Encoder.EncodeToBase64(data);
-    // }
+    }
     // Given the current connectivity and execution enviroment choose between OCR engine options
     // If connectivity and finances available
     // if (CheckConnectivity())
