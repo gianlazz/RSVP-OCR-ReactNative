@@ -2,6 +2,15 @@
 **/node_modules/**/*
 **/npm-debug.log
 
+# Typescript
+**/dist/**/*
+**/d.ts
+RSVP-OCR.Core/dist/*
+RSVP-OCR.Core/dist/RsvpOcrCore.js
+RSVP-OCR.Core/dist/RsvpOcrCore.d.ts
+RSVP-OCR.Core/dist/Services/CloudOCR.js
+RSVP-OCR.Core/dist/Services/CloudOCR.d.ts
+
 # Expo
 **/.expo/**/*
 

@@ -4,24 +4,37 @@
 // Gian Lazzarini
 // 01.22.18
 
-//import { ClientSideOcr } from "./Services/ClientSideOcr";
+import Validator = require("./Services/InputValidator");
+import Web = require("./Services/Web");
+import CloudOcr = require("./Services/CloudOcr");
+import OfflineOcr = require("./Services/OfflineOcr");
+
+var result;
+
 // Should most of this classes members be overloaded implementations of this routine?
+export function Parse( data:string ): any
+{ // Accept image directory string or base64 encoded image string
 
-export function CheckConnectivity(): boolean
-{
-    return true;
-}
-
-export function Parse( data:string ): number // Should return resulting object?
-{
-    // var isBase64:boolean = Base64Encoder.IsValidBase64(data); // Returns boolean
-    // Accept image directory string or base64 encoded image string
-    if (isBase64 != true)
+    // Should probably be a case switch statement.
+    if (Validator.IsValidBase64(data)) 
     {
-    // If it's an image directory 
-    // Then encode it as base64
-    //     var data = Base64Encoder.EncodeToBase64(data);
+        result = (Web.IsConnected) ? CloudOcr.Parse(data) : OfflineOcr.Parse(data);
+    } 
+    else if (Validator.IsValidImageDirectory(data))
+    {
+        // Then encode it as Base64
+        result = Validator.EncodeToBase64(data);
+    } 
+    else if (Validator.IsValidImageUrl(data))
+    {
+        // Download it from the web then encode it as Base64.
+        var result = Validator.EncodeToBase64(data);
     }
+    else if (Validator.IsValidUrl(data))
+    {
+        var result = Web.Scraper(data);
+    }
+
     // Given the current connectivity and execution enviroment choose between OCR engine options
     // If connectivity and finances available
     // if (CheckConnectivity())
@@ -44,7 +57,6 @@ export function Parse( data:string ): number // Should return resulting object?
     
     // Return the final string to be visualized
     // }
-    return 3;
 }
 
 export function RsvpParse(textToParse: string)
@@ -56,4 +68,7 @@ export function RsvpParse(textToParse: string)
     }
 }
 
-RsvpParse("Hi This Is My First Test");
+export function CheckConnectivity(): boolean
+{
+    return true;
+}

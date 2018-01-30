@@ -5,20 +5,28 @@
 // Gian Lazzarini
 // 01.22.18
 Object.defineProperty(exports, "__esModule", { value: true });
-//import { ClientSideOcr } from "./Services/ClientSideOcr";
-function CheckConnectivity() {
-    return true;
-}
-exports.CheckConnectivity = CheckConnectivity;
-function OCR(data) {
-    // var isBase64:boolean = Base64Encoder.IsValidBase64(data); // Returns boolean
-    // Accept image directory string or base64 encoded image string
-    // if (isBase64 != true)
-    // {
-    // If it's an image directory 
-    // Then encode it as base64
-    //     var data = Base64Encoder.EncodeToBase64(data);
-    // }
+var Validator = require("./Services/InputValidator");
+var Web = require("./Services/Web");
+var CloudOcr = require("./Services/CloudOcr");
+var OfflineOcr = require("./Services/OfflineOcr");
+var result;
+// Should most of this classes members be overloaded implementations of this routine?
+function Parse(data) {
+    // Should probably be a case switch statement.
+    if (Validator.IsValidBase64(data)) {
+        result = (Web.IsConnected) ? CloudOcr.Parse(data) : OfflineOcr.Parse(data);
+    }
+    else if (Validator.IsValidImageDirectory(data)) {
+        // Then encode it as Base64
+        result = Validator.EncodeToBase64(data);
+    }
+    else if (Validator.IsValidImageUrl(data)) {
+        // Download it from the web then encode it as Base64.
+        var result = Validator.EncodeToBase64(data);
+    }
+    else if (Validator.IsValidUrl(data)) {
+        var result = Web.Scraper(data);
+    }
     // Given the current connectivity and execution enviroment choose between OCR engine options
     // If connectivity and finances available
     // if (CheckConnectivity())
@@ -38,9 +46,8 @@ function OCR(data) {
     // If the user selects a URL Pull the primary reading text of that page, stripped of adds or bullshit
     // Return the final string to be visualized
     // }
-    return 3;
 }
-exports.OCR = OCR;
+exports.Parse = Parse;
 function RsvpParse(textToParse) {
     var SplitString = textToParse.split(" ");
     for (var index = 0; index < SplitString.length; index++) {
@@ -49,4 +56,7 @@ function RsvpParse(textToParse) {
     }
 }
 exports.RsvpParse = RsvpParse;
-RsvpParse("Hi This Is My First Test");
+function CheckConnectivity() {
+    return true;
+}
+exports.CheckConnectivity = CheckConnectivity;

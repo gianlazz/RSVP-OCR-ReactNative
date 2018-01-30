@@ -1,4 +1,2 @@
-declare class CloudOcr {
-    static AxiosCloudVision(imgDirectory: string): string;
-    static Parse(resultingBase64: string): string;
-}
+export declare function AxiosCloudVision(imgDirectory: string): string;
+export declare function Parse(data: string): any;

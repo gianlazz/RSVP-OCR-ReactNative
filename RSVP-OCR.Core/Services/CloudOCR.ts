@@ -8,39 +8,36 @@
 // var ocrArray:Array<String>;
 // var ocrString:string;
 
-class CloudOcr
+export function AxiosCloudVision(imgDirectory:string): string
 {
-        static AxiosCloudVision(imgDirectory:string): string
-        {
-                // axios.post(cloudVision, {
-                //         requests: 
-                //         [{
-                //             image: {
-                //             content: data
-                //             },
-                //             features: [{
-                //             //Or 'TEXT_DETECTION'
-                //             type: 'DOCUMENT_TEXT_DETECTION',
-                //             maxResults: 1
-                //             }]
-                //         }]
-                //     }).then(function (response) {
-                //     console.log(response);
-                //         Parse the JSON result from OCR
-                //         var textAnnotations = response.data.responses[0].textAnnotations[0];
-                //         var textContent = textAnnotations.description;
-                //         textContent
-                //         console.log(textContent);
-                //         ocrArray = response.data.responses[0].textAnnotations.slice(1).map(w => w.description)})
-                //         ocrString = textContent;
-                //             }.bind(this)).catch(function (error) {
-                //                 console.log(error, 'error');
-                //             }).catch(err => console.error(err));
-                return "";
-        }
+        // axios.post(cloudVision, {
+        //         requests: 
+        //         [{
+        //             image: {
+        //             content: data
+        //             },
+        //             features: [{
+        //             //Or 'TEXT_DETECTION'
+        //             type: 'DOCUMENT_TEXT_DETECTION',
+        //             maxResults: 1
+        //             }]
+        //         }]
+        //     }).then(function (response) {
+        //     console.log(response);
+        //         Parse the JSON result from OCR
+        //         var textAnnotations = response.data.responses[0].textAnnotations[0];
+        //         var textContent = textAnnotations.description;
+        //         textContent
+        //         console.log(textContent);
+        //         ocrArray = response.data.responses[0].textAnnotations.slice(1).map(w => w.description)})
+        //         ocrString = textContent;
+        //             }.bind(this)).catch(function (error) {
+        //                 console.log(error, 'error');
+        //             }).catch(err => console.error(err));
+        return "";
+}
 
-        static Parse(resultingBase64: string)
-        {
-                return "";
-        }
+export function Parse(data: string): any
+{
+        return "";
 }
