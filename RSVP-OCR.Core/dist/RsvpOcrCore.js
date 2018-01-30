@@ -10,9 +10,23 @@ var Web = require("./Services/Web");
 var CloudOcr = require("./Services/CloudOcr");
 var OfflineOcr = require("./Services/OfflineOcr");
 var result;
-// Should most of this classes members be overloaded implementations of this routine?
+/* Accepts the following forms of input:
+ * 1. Local image directory string
+ * 2. Base64 encoded image string
+ * 3. URL Directory to an online image
+ * 4. URL directory to a webpage for which to pull the primary reading material
+ * 5. Any resulting image(s) containing valid URLS can then have the primary reading content pulled from said URL
+ *
+ * Returns:
+ * 1. Full parsed string of text
+ * 2. Organization of paragraphs
+ * 3. X/Y coordinates for bounding box points around each word
+ * 4. (Optionally) all URLs found
+ * 5. (Optionally) URL Ping verification details
+ * 6. (Optionally) Invalid URL and autocorrection suggested URL
+ */
+// Should I just overload implementations of this routine?
 function Parse(data) {
-    // Should probably be a case switch statement.
     if (Validator.IsValidBase64(data)) {
         // Given the current connectivity and execution enviroment choose between OCR engine options
         // If connectivity and finances available
@@ -23,31 +37,29 @@ function Parse(data) {
         result = Validator.EncodeToBase64(data);
     }
     else if (Validator.IsValidImageUrl(data)) {
+        // Ping the URL(s) to see if its valid
+        // Optionally if multiple URLS are found, verify with user which they want?
+        // If the user selects a URL Pull the primary reading text of that page, stripped of adds or bullshit
         // Download it from the web then encode it as Base64.
-        var result = Validator.EncodeToBase64(data);
+        result = Validator.EncodeToBase64(data);
     }
     else if (Validator.IsValidUrl(data)) {
-        var result = Web.Scraper(data);
+        result = Web.Scraper(data);
     }
-    // if (CheckConnectivity())
-    // {
-    // perform OCR through the cloud
-    //     var OcrResult = CloudOcr.Parse(data);
-    // } else
-    // {    
-    // perform most performant available option for clientside OCR
-    //     var OcrResult = ClientSideOcr.Parse(data); 
-    // }
+    return result;
     // If the resulting JSON OCR result string object contains a URL    
-    // if (OcrResult.ContainsUrl) 
-    // {
-    // Ping the URL(s) to see if its valid
-    // Optionally verify with user which URL they want?
-    // If the user selects a URL Pull the primary reading text of that page, stripped of adds or bullshit
-    // Return the final string to be visualized
-    // }
+    // Return the final string(or whatever type of custom object) to be visualized
+    // I would most likely eventually like to map the result to an object that
+    // I could persist in a database. That would include all of the text values from the
+    // JSON result including their x & y bounding box coordinates so that they could be
+    // re-drawn.
 }
 exports.Parse = Parse;
+/* Accepts the following forms of input:
+ *
+ * Returns:
+ *
+ */
 function RsvpParse(textToParse) {
     var SplitString = textToParse.split(" ");
     for (var index = 0; index < SplitString.length; index++) {

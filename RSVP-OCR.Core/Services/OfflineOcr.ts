@@ -2,6 +2,8 @@
 // c++ Emscripten port of Tesseract to javascript as Tesseract.js
 // However if it's in ios app then Tesseract.js is not supported
 
+//import Tesseract from ('tesseract.js');
+
 export function Parse(resultingBase64: string): any
 {
     throw new Error("Not yet implemented");
