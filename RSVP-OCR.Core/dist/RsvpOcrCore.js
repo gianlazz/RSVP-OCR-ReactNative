@@ -14,6 +14,8 @@ var result;
 function Parse(data) {
     // Should probably be a case switch statement.
     if (Validator.IsValidBase64(data)) {
+        // Given the current connectivity and execution enviroment choose between OCR engine options
+        // If connectivity and finances available
         result = (Web.IsConnected) ? CloudOcr.Parse(data) : OfflineOcr.Parse(data);
     }
     else if (Validator.IsValidImageDirectory(data)) {
@@ -27,8 +29,6 @@ function Parse(data) {
     else if (Validator.IsValidUrl(data)) {
         var result = Web.Scraper(data);
     }
-    // Given the current connectivity and execution enviroment choose between OCR engine options
-    // If connectivity and finances available
     // if (CheckConnectivity())
     // {
     // perform OCR through the cloud

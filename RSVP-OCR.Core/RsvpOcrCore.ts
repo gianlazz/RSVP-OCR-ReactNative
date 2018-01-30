@@ -18,6 +18,18 @@ export function Parse( data:string ): any
     // Should probably be a case switch statement.
     if (Validator.IsValidBase64(data)) 
     {
+        // if (CheckConnectivity())
+        // {
+        // perform OCR through the cloud
+        //     var OcrResult = CloudOcr.Parse(data);
+        // } else
+        // {    
+        // perform most performant available option for clientside OCR
+        //     var OcrResult = ClientSideOcr.Parse(data); 
+        // }
+
+        // Given the current connectivity and execution enviroment choose between OCR engine options
+        // If connectivity and finances available
         result = (Web.IsConnected) ? CloudOcr.Parse(data) : OfflineOcr.Parse(data);
     } 
     else if (Validator.IsValidImageDirectory(data))
@@ -27,6 +39,9 @@ export function Parse( data:string ): any
     } 
     else if (Validator.IsValidImageUrl(data))
     {
+        // Ping the URL(s) to see if its valid
+        // Optionally if multiple URLS are found, verify with user which they want?
+        // If the user selects a URL Pull the primary reading text of that page, stripped of adds or bullshit
         // Download it from the web then encode it as Base64.
         var result = Validator.EncodeToBase64(data);
     }
@@ -35,28 +50,13 @@ export function Parse( data:string ): any
         var result = Web.Scraper(data);
     }
 
-    // Given the current connectivity and execution enviroment choose between OCR engine options
-    // If connectivity and finances available
-    // if (CheckConnectivity())
-    // {
-    // perform OCR through the cloud
-    //     var OcrResult = CloudOcr.Parse(data);
-    // } else
-    // {    
-    // perform most performant available option for clientside OCR
-    //     var OcrResult = ClientSideOcr.Parse(data); 
-    // }
     // If the resulting JSON OCR result string object contains a URL    
-    // if (OcrResult.ContainsUrl) 
-    // {
-    // Ping the URL(s) to see if its valid
-        
-    // Optionally verify with user which URL they want?
-    
-    // If the user selects a URL Pull the primary reading text of that page, stripped of adds or bullshit
-    
-    // Return the final string to be visualized
-    // }
+    // Return the final string(or whatever type of custom object) to be visualized
+
+    // I would most likely eventually like to map the result to an object that
+    // I could persist in a database. That would include all of the text values from the
+    // JSON result including their x & y bounding box coordinates so that they could be
+    // re-drawn.
 }
 
 export function RsvpParse(textToParse: string)
