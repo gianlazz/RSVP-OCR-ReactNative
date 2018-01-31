@@ -30,29 +30,31 @@ var result:any;
 // Should I just overload implementations of this routine?
 export function Parse( data:string ): any
 { 
-    if (Validator.IsValidBase64(data)) 
-    {
-        // Given the current connectivity and execution enviroment choose between OCR engine options
-        // If connectivity and finances available
-        result = (Web.IsConnected) ? CloudOcr.Parse(data) : OfflineOcr.Parse(data);
-    } 
-    else if (Validator.IsValidImageDirectory(data))
-    {
-        // Then encode it as Base64
-        result = Validator.EncodeToBase64(data);
-    } 
-    else if (Validator.IsValidImageUrl(data))
-    {
-        // Ping the URL(s) to see if its valid
-        // Optionally if multiple URLS are found, verify with user which they want?
-        // If the user selects a URL Pull the primary reading text of that page, stripped of adds or bullshit
-        // Download it from the web then encode it as Base64.
-        result = Validator.EncodeToBase64(data);
-    }
-    else if (Validator.IsValidUrl(data))
-    {
-        result = Web.Scraper(data);
-    }
+    // if (Validator.IsValidBase64(data)) 
+    // {
+    //     // Given the current connectivity and execution enviroment choose between OCR engine options
+    //     // If connectivity and finances available
+    //     result = (Web.IsConnected) ? CloudOcr.Parse(data) : OfflineOcr.Parse(data);
+    // } 
+    // else if (Validator.IsValidImageDirectory(data))
+    // {
+    //     // Then encode it as Base64
+    //     result = Validator.EncodeToBase64(data);
+    // } 
+    // else if (Validator.IsValidImageUrl(data))
+    // {
+    //     // Ping the URL(s) to see if its valid
+    //     // Optionally if multiple URLS are found, verify with user which they want?
+    //     // If the user selects a URL Pull the primary reading text of that page, stripped of adds or bullshit
+    //     // Download it from the web then encode it as Base64.
+    //     result = Validator.EncodeToBase64(data);
+    // }
+    // else if (Validator.IsValidUrl(data))
+    // {
+    //     result = Web.Scraper(data);
+    // }
+
+    result = OfflineOcr.Parse(data);
 
     return result;
     // If the resulting JSON OCR result string object contains a URL    

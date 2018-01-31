@@ -3,9 +3,10 @@ var expect = require('chai').expect;
 var core = require('../dist/RsvpOcrCore.js');
 
 describe('Local image directory', () => {
-    it('if valid should return ___', () => {
-        //var result = core.Parse("hi");
-        //expect(result).to.equal(false);
+    it('if valid & offline should return string', () => {
+        var testImageDirectory = "./TestBookPage.jpg";
+        var result = core.Parse(testImageDirectory);
+        expect(result).to.equal(string);
     });
     it('if invalid should return ___', () => {
         //var result = core.Parse("hi");

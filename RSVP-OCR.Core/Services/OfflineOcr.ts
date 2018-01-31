@@ -3,8 +3,22 @@
 // However if it's in ios app then Tesseract.js is not supported
 
 //import Tesseract from ('tesseract.js');
+//import Tesseract from 'tesseract.js';
+import Tesseract = require('tesseract.js')
 
-export function Parse(resultingBase64: string): any
+export function Parse(data: string): any
 {
-    throw new Error("Not yet implemented");
-}
+    console.log('launching the tesseract');
+    
+    data = "/TestBookPage.jpg";
+
+    Tesseract.recognize(data)
+        .progress((progress:any) => {
+            console.log('progress', progress);
+        })
+        .then((tesseractResult:any) => {
+            console.log(tesseractResult);
+            //this.recognizedText = tesseractResult.text;
+              //message: tesseractResult.text,
+        });
+};
