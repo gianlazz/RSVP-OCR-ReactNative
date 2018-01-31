@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "RSVP-OCR.Core"
+		},
+		{
+			"path": "RSVP-OCR.Console"
+		},
+		{
+			"path": "RSVP-OCR.Persistance"
+		},
+		{
+			"path": "RSVP-OCR.ReactNative"
+		}
+	]
+}
