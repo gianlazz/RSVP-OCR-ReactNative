@@ -7,7 +7,7 @@
 import Validator = require("./Services/InputValidator");
 import Web = require("./Services/Web");
 import CloudOcr = require("./Services/CloudOcr");
-import OfflineOcr = require("./Services/OfflineOcr");
+import ClientSideOcr = require("./Services/ClientSideOcr");
 
 var result:any;
 
@@ -28,7 +28,7 @@ var result:any;
  */
 
 // Should I just overload implementations of this routine?
-export function Parse( data:string ): any
+export function Parse( data:string ): Snapshot
 { 
     // if (Validator.IsValidBase64(data)) 
     // {
@@ -54,7 +54,7 @@ export function Parse( data:string ): any
     //     result = Web.Scraper(data);
     // }
 
-    result = OfflineOcr.Parse(data);
+    result = ClientSideOcr.Parse(data);
 
     return result;
     // If the resulting JSON OCR result string object contains a URL    
@@ -85,3 +85,8 @@ export function CheckConnectivity(): boolean
 {
     return true;
 }
+
+console.log("hi")
+console.log("hi again")
+console.log("hi again and again")
+console.log("hi again")

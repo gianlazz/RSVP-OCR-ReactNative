@@ -5,7 +5,7 @@
 // Gian Lazzarini
 // 01.22.18
 Object.defineProperty(exports, "__esModule", { value: true });
-var OfflineOcr = require("./Services/OfflineOcr");
+var ClientSideOcr = require("./Services/ClientSideOcr");
 var result;
 /* Accepts the following forms of input:
  * 1. Local image directory string
@@ -47,7 +47,7 @@ function Parse(data) {
     // {
     //     result = Web.Scraper(data);
     // }
-    result = OfflineOcr.Parse(data);
+    result = ClientSideOcr.Parse(data);
     return result;
     // If the resulting JSON OCR result string object contains a URL    
     // Return the final string(or whatever type of custom object) to be visualized
@@ -74,3 +74,7 @@ function CheckConnectivity() {
     return true;
 }
 exports.CheckConnectivity = CheckConnectivity;
+console.log("hi");
+console.log("hi again");
+console.log("hi again and again");
+console.log("hi again");

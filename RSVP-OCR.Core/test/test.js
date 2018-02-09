@@ -6,7 +6,7 @@ describe('Local image directory', () => {
     it('if valid & offline should return string', () => {
         var testImageDirectory = "./TestBookPage.jpg";
         var result = core.Parse(testImageDirectory);
-        expect(result).to.equal(string);
+        expect(result).to.equal(Snapshot);
     });
     it('if invalid should return ___', () => {
         //var result = core.Parse("hi");
