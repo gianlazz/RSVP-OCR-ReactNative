@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "RSVP-OCR.ReactNative"
+		},
+		{
+			"path": "RsvpOcr.GraphQL"
 		}
 	]
 }

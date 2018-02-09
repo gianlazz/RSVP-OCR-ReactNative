@@ -11,6 +11,11 @@ import ClientSideOcr = require("./Services/ClientSideOcr");
 
 var result:any;
 
+export function CheckConnectivity(): boolean
+{
+    return true;
+}
+
 /* Accepts the following forms of input:
  * 1. Local image directory string
  * 2. Base64 encoded image string
@@ -28,65 +33,7 @@ var result:any;
  */
 
 // Should I just overload implementations of this routine?
-export function Parse( data:string ): Snapshot
+export function Parse( data:string ): any
 { 
-    // if (Validator.IsValidBase64(data)) 
-    // {
-    //     // Given the current connectivity and execution enviroment choose between OCR engine options
-    //     // If connectivity and finances available
-    //     result = (Web.IsConnected) ? CloudOcr.Parse(data) : OfflineOcr.Parse(data);
-    // } 
-    // else if (Validator.IsValidImageDirectory(data))
-    // {
-    //     // Then encode it as Base64
-    //     result = Validator.EncodeToBase64(data);
-    // } 
-    // else if (Validator.IsValidImageUrl(data))
-    // {
-    //     // Ping the URL(s) to see if its valid
-    //     // Optionally if multiple URLS are found, verify with user which they want?
-    //     // If the user selects a URL Pull the primary reading text of that page, stripped of adds or bullshit
-    //     // Download it from the web then encode it as Base64.
-    //     result = Validator.EncodeToBase64(data);
-    // }
-    // else if (Validator.IsValidUrl(data))
-    // {
-    //     result = Web.Scraper(data);
-    // }
 
-    result = ClientSideOcr.Parse(data);
-
-    return result;
-    // If the resulting JSON OCR result string object contains a URL    
-    // Return the final string(or whatever type of custom object) to be visualized
-
-    // I would most likely eventually like to map the result to an object that
-    // I could persist in a database. That would include all of the text values from the
-    // JSON result including their x & y bounding box coordinates so that they could be
-    // re-drawn.
 }
-
-/* Accepts the following forms of input:
- *
- * Returns:
- * 
- */
-
-export function RsvpParse(textToParse: string)
-{
-    var SplitString = textToParse.split(" ");
-    for (let index = 0; index < SplitString.length; index++) {
-        const element = textToParse[index];
-        console.log(element);            
-    }
-}
-
-export function CheckConnectivity(): boolean
-{
-    return true;
-}
-
-console.log("hi")
-console.log("hi again")
-console.log("hi again and again")
-console.log("hi again")

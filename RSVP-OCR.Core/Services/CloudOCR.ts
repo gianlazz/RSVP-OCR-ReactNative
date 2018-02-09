@@ -8,7 +8,7 @@
 // var ocrArray:Array<String>;
 // var ocrString:string;
 
-export function AxiosCloudVision(imgDirectory:string): string
+export function Parse(imgDirectory:string): string
 {
         // axios.post(cloudVision, {
         //         requests: 
@@ -34,10 +34,5 @@ export function AxiosCloudVision(imgDirectory:string): string
         //             }.bind(this)).catch(function (error) {
         //                 console.log(error, 'error');
         //             }).catch(err => console.error(err));
-        return "";
-}
-
-export function Parse(data: string): any
-{
         return "";
 }
