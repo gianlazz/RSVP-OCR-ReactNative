@@ -16,12 +16,8 @@
     "typescript": "^2.6.2"
   },
   "dependencies": {
-    "@google-cloud/vision": "^0.15.0",
-    "@types/axios": "^0.14.0",
     "@types/node-fetch": "^1.6.7",
     "@types/tesseract.js": "0.0.2",
-    "axios": "^0.17.1",
-    "base64-img": "^1.0.3",
     "node-fetch": "^2.0.0",
     "tesseract.js": "^1.0.10"
   }

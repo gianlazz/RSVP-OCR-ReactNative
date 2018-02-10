@@ -1,5 +1,4 @@
 const readline = require('readline');
-var base64Img = require('base64-img');
 // Read the file into memory for native base64 encoding
 var fs = require('fs');
 import fetch from 'node-fetch';
@@ -34,20 +33,23 @@ function Parse(data:string): any
 	.then(res => res.json())
         .then(function(json) 
         {
-                console.log(json)
-                var textAnnotations = json.responses[0].textAnnotations[0];
-                var textContent = textAnnotations.description;
+                var textContent = ParseGcvJson(json);
                 console.log(textContent);
         });
 }
 
-function ParseGcvJson()
+function ParseGcvJson(json:any):string
 {
-        //         //Parse the JSON result from OCR
-        //         var textAnnotations = response.data.responses[0].textAnnotations[0];
-        //         var textContent = textAnnotations.description;
-        //         console.log(textContent);
+        //Parse the JSON result from OCR
+        var textAnnotations = json.responses[0].textAnnotations[0];
+        var textContent = textAnnotations.description;
+        return textContent;
+}
+
+function GcvJsonToArray(json:any):string[]
+{
         //         ocrArray = response.data.responses[0].textAnnotations.slice(1).map(w:any => w.description)})
+        throw console.error();
 }
 
 const rl = readline.createInterface({
@@ -56,7 +58,6 @@ const rl = readline.createInterface({
       });
 
       rl.question('Give the directory to an image: ', (answer:any) => {
-        //var data = base64Img.base64Sync(answer);
 
         var imageFile = fs.readFileSync(answer);
 
@@ -64,7 +65,6 @@ const rl = readline.createInterface({
         var encoded = new Buffer(imageFile).toString('base64');
 
         Parse(encoded);
-        //console.log(`Thank you for your valuable feedback: ${answer}`);
       
         rl.close();
       });
