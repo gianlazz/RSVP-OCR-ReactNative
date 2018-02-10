@@ -48,6 +48,11 @@ function GcvJsonToArray(json) {
 var GraphQLApi = "https://api.graph.cool/simple/v1/cjdcisiyd3hc5018698qw20k9";
 var query = "query {\n        allScenes {\n          id\n          googlecloudvision\n          text\n          url\n        }\n      }";
 graphql_request_1.request(GraphQLApi, query).then(function (data) { return console.log(data); });
+graphql_request_1.request(GraphQLApi, query)
+    .then(function (data) {
+    //var textContent = ParseGcvJson(data.allScenes.googlecloudvision[1]);
+    console.log(JSON.stringify(data.allScenes[1].googlecloudvision) + "aksldjflasjdflasjd");
+});
 var rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout

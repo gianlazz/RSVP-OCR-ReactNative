@@ -61,7 +61,14 @@ const query = `query {
         }
       }`
 
-      request(GraphQLApi, query).then(data => console.log(data))
+      request(GraphQLApi, query).then(data => console.log(data));
+      
+      request(GraphQLApi, query)
+        .then(function(data)
+        {
+                //var textContent = ParseGcvJson(data.allScenes.googlecloudvision[1]);
+                console.log(JSON.stringify(data.allScenes[1].googlecloudvision) + "aksldjflasjdflasjd");
+        });
 
 const rl = readline.createInterface({
         input: process.stdin,
