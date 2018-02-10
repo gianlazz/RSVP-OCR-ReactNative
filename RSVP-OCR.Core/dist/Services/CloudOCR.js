@@ -4,6 +4,7 @@ var readline = require('readline');
 // Read the file into memory for native base64 encoding
 var fs = require('fs');
 var node_fetch_1 = require("node-fetch");
+var graphql_request_1 = require("graphql-request");
 // Google Cloud Vision API KEYS
 var cloudVisionKey = 'AIzaSyADh2eyiZCxc4g1IMjc0PjQFudxKlFW3-s';
 var cloudVision = 'https://vision.googleapis.com/v1/images:annotate?key=' + cloudVisionKey;
@@ -44,6 +45,9 @@ function GcvJsonToArray(json) {
     //         ocrArray = response.data.responses[0].textAnnotations.slice(1).map(w:any => w.description)})
     throw console.error();
 }
+var GraphQLApi = "https://api.graph.cool/simple/v1/cjdcisiyd3hc5018698qw20k9";
+var query = "query {\n        allScenes {\n          id\n          googlecloudvision\n          text\n          url\n        }\n      }";
+graphql_request_1.request(GraphQLApi, query).then(function (data) { return console.log(data); });
 var rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
