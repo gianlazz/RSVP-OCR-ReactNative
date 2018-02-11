@@ -45,14 +45,28 @@ function GcvJsonToArray(json) {
     //         ocrArray = response.data.responses[0].textAnnotations.slice(1).map(w:any => w.description)})
     throw console.error();
 }
+//#region GraphQL const
 var GraphQLApi = "https://api.graph.cool/simple/v1/cjdcisiyd3hc5018698qw20k9";
 var query = "query {\n        allScenes {\n          id\n          googlecloudvision\n          text\n          url\n        }\n      }";
+//#endregion
+//#region GraphQL Query request examples experiements with WITH regular Fetch npm package for http ajax calles upon GraphQL API endpoint
+//#endregion
+//#region GraphQL Query request examples and experiments WITH graphql-request npm package
+// Basic request
 graphql_request_1.request(GraphQLApi, query).then(function (data) { return console.log(data); });
+// Complex request
 graphql_request_1.request(GraphQLApi, query)
     .then(function (data) {
-    //var textContent = ParseGcvJson(data.allScenes.googlecloudvision[1]);
-    console.log(JSON.stringify(data.allScenes[1].googlecloudvision) + "aksldjflasjdflasjd");
+    // For loop to demonstrate iterating through request response json field values          
+    for (var index = 0; index < data.allScenes.length; index++) {
+        var element = data.allScenes[index].googlecloudvision;
+        console.log(element);
+    }
+    // Example of manually going through response values and indexes                
+    console.log(JSON.stringify(data.allScenes[1].googlecloudvision) + " HERE WEVE ACCESSED QUERY FIELD JSON MEMBERS!");
 });
+//#endregion
+//#region CLI Input for Gcv OCR
 var rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
@@ -64,3 +78,4 @@ rl.question('Give the directory to an image: ', function (answer) {
     Parse(encoded);
     rl.close();
 });
+//#endregion 
