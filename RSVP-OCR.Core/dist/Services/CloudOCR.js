@@ -49,9 +49,43 @@ function GcvJsonToArray(json) {
 var GraphQLApi = "https://api.graph.cool/simple/v1/cjdcisiyd3hc5018698qw20k9";
 var query = "query {\n        allScenes {\n          id\n          googlecloudvision\n          text\n          url\n        }\n      }";
 //#endregion
-//#region GraphQL Query request examples experiements with WITH regular Fetch npm package for http ajax calles upon GraphQL API endpoint
+//#region GraphQL Query request examples experiements with w/ regular Fetch npm package for http ajax calles upon GraphQL API endpoint
+// fetch(GraphQLApi, {
+//   method: 'POST',
+//   headers: { 'Content-Type': 'application/json' },
+//   body: JSON.stringify({ query: '{ posts { title } }' }),
+// })
+//   .then(res => res.json())
+//   .then(res => console.log(res.data));
+// fetch('https://api.graph.cool/simple/v1/cjdcisiyd3hc5018698qw20k9', {
+//   method: 'post',
+//   headers: {
+//     'Content-Type': 'application/json',
+//   //'Authorization': 'Bearer YOUR_AUTH_TOKEN'
+//   },
+//   body: '{"query":"mutation{createScene(text:\"test123\"){id}}"}', 
+// })
+//   .then(response => response.json())
+//   .then(response => console.log("Here's the result of your fetch query to graphql api " + response));
 //#endregion
-//#region GraphQL Query request examples and experiments WITH graphql-request npm package
+//#region GraphQL Mutation experiment w/ graphql-request npm package
+var graphql_request_2 = require("graphql-request");
+var client = new graphql_request_2.GraphQLClient('https://api.graph.cool/simple/v1/cjdcisiyd3hc5018698qw20k9', {
+    headers: {
+        Authorization: 'Bearer YOUR_AUTH_TOKEN',
+    },
+});
+function setItem() {
+    return client.request("\n    {\n      createScene(\n        text: \"testing from my macbook pro via my node cli\"\n      ) {\n        id\n      }\n    }\n    \n  ");
+}
+try {
+    setItem();
+}
+catch (error) {
+    console.log(error);
+}
+//#endregion
+//#region GraphQL Query request examples and experiments w/ graphql-request npm package
 // Basic request
 graphql_request_1.request(GraphQLApi, query).then(function (data) { return console.log(data); });
 // Complex request

@@ -64,11 +64,58 @@ const query = `query {
       }`
 //#endregion
 
-//#region GraphQL Query request examples experiements with WITH regular Fetch npm package for http ajax calles upon GraphQL API endpoint
+//#region GraphQL Query request examples experiements with w/ regular Fetch npm package for http ajax calles upon GraphQL API endpoint
+// fetch(GraphQLApi, {
+//   method: 'POST',
+//   headers: { 'Content-Type': 'application/json' },
+//   body: JSON.stringify({ query: '{ posts { title } }' }),
+// })
+//   .then(res => res.json())
+//   .then(res => console.log(res.data));
 
+// fetch('https://api.graph.cool/simple/v1/cjdcisiyd3hc5018698qw20k9', {
+//   method: 'post',
+//   headers: {
+//     'Content-Type': 'application/json',
+//   //'Authorization': 'Bearer YOUR_AUTH_TOKEN'
+//   },
+//   body: '{"query":"mutation{createScene(text:\"test123\"){id}}"}', 
+// })
+//   .then(response => response.json())
+//   .then(response => console.log("Here's the result of your fetch query to graphql api " + response));
 //#endregion
 
-//#region GraphQL Query request examples and experiments WITH graphql-request npm package
+//#region GraphQL Mutation experiment w/ graphql-request npm package
+import { GraphQLClient } from 'graphql-request'
+
+const client = new GraphQLClient('https://api.graph.cool/simple/v1/cjdcisiyd3hc5018698qw20k9', {
+  headers: {
+    Authorization: 'Bearer YOUR_AUTH_TOKEN',
+  },
+});
+
+
+function setItem() {
+  return client.request(`
+    {
+      createScene(
+        text: "testing from my macbook pro via my node cli"
+      ) {
+        id
+      }
+    }
+    
+  `)
+}
+
+try {
+  setItem();
+} catch (error) {
+  console.log(error);
+}
+//#endregion
+
+//#region GraphQL Query request examples and experiments w/ graphql-request npm package
 // Basic request
       request(GraphQLApi, query).then(data => console.log(data));
       
